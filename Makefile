@@ -13,5 +13,5 @@ install:
 lint:
 	eslint index.js lib test
 
-test:
+test: 
 	lab -c -v

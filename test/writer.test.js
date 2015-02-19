@@ -1,6 +1,6 @@
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
-//var expect = require('chai').expect;
+var expect = require('code').expect;
 
 
 // var streams = require('memory-streams');
@@ -17,7 +17,9 @@ lab.experiment('Writer', function () {
     header = JSON.parse(header);
 
     var reader = qvx.Writer.write(header);
-    console.log(reader);
+    //console.log(reader);
+    //expect(reader).to.be.a('string');
+    expect(reader).to.have.length(7503);
     done();
     // reader.pipe(concat(function (body) {
     //   console.log(body);
