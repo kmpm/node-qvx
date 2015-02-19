@@ -1,0 +1,214 @@
+{
+  "QvxTableHeader": {
+    "MajorVersion": "1",
+    "MinorVersion": "0",
+    "CreateUtcTime": "2012-03-06 19:22:15",
+    "TableName": "test",
+    "UsesSeparatorByte": "true",
+    "Creator": {
+      "Company": "expressor",
+      "Product": "Studio.Extension.QlikView",
+      "MajorVersion": "1",
+      "MinorVersion": "0",
+      "MaintenanceVersion": "0"
+    },
+    "Fields": {
+      "QvxFieldHeader": [
+        {
+          "FieldName": "AddressNumber",
+          "Type": "QVX_IEEE_REAL",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "8"
+        },
+        {
+          "FieldName": "ItemNumber",
+          "Type": "QVX_SIGNED_INTEGER",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "8",
+          "FixPointDecimals": "0"
+        },
+        {
+          "FieldName": "InvoiceDate",
+          "Type": "QVX_TEXT",
+          "Extent": "QVX_COUNTED",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "1",
+          "FieldFormat": {
+            "Type": "TIMESTAMP",
+            "Fmt": "YYYY-MM-DD hh:mm:ss.fff"
+          }
+        },
+        {
+          "FieldName": "PromisedDeliveryDate",
+          "Type": "QVX_TEXT",
+          "Extent": "QVX_COUNTED",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "1",
+          "FieldFormat": {
+            "Type": "TIMESTAMP",
+            "Fmt": "YYYY-MM-DD hh:mm:ss.fff"
+          }
+        },
+        {
+          "FieldName": "Date",
+          "Type": "QVX_TEXT",
+          "Extent": "QVX_COUNTED",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "1",
+          "FieldFormat": {
+            "Type": "TIMESTAMP",
+            "Fmt": "YYYY-MM-DD hh:mm:ss.fff"
+          }
+        },
+        {
+          "FieldName": "InvoiceNumber",
+          "Type": "QVX_IEEE_REAL",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "8"
+        },
+        {
+          "FieldName": "OrderNumber",
+          "Type": "QVX_IEEE_REAL",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "8"
+        },
+        {
+          "FieldName": "ItemDesc",
+          "Type": "QVX_TEXT",
+          "Extent": "QVX_COUNTED",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "4"
+        },
+        {
+          "FieldName": "SalesQty",
+          "Type": "QVX_SIGNED_INTEGER",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "8",
+          "FixPointDecimals": "0"
+        },
+        {
+          "FieldName": "OpenQty",
+          "Type": "QVX_SIGNED_INTEGER",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "8",
+          "FixPointDecimals": "0"
+        },
+        {
+          "FieldName": "OpenOrder",
+          "Type": "QVX_SIGNED_INTEGER",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "8",
+          "FixPointDecimals": "0"
+        },
+        {
+          "FieldName": "GrossSales",
+          "Type": "QVX_SIGNED_INTEGER",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "8",
+          "FixPointDecimals": "0"
+        },
+        {
+          "FieldName": "Sales",
+          "Type": "QVX_SIGNED_INTEGER",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "8",
+          "FixPointDecimals": "0"
+        },
+        {
+          "FieldName": "BackOrder",
+          "Type": "QVX_SIGNED_INTEGER",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "8",
+          "FixPointDecimals": "0"
+        },
+        {
+          "FieldName": "Cost",
+          "Type": "QVX_PACKED_BCD",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "18",
+          "FixPointDecimals": "4"
+        },
+        {
+          "FieldName": "Margin",
+          "Type": "QVX_PACKED_BCD",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "18",
+          "FixPointDecimals": "4"
+        },
+        {
+          "FieldName": "SalesKey",
+          "Type": "QVX_TEXT",
+          "Extent": "QVX_COUNTED",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "4"
+        },
+        {
+          "FieldName": "ofDaysLate",
+          "Type": "QVX_SIGNED_INTEGER",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "8",
+          "FixPointDecimals": "0"
+        },
+        {
+          "FieldName": "ofDaystoShip",
+          "Type": "QVX_SIGNED_INTEGER",
+          "Extent": "QVX_FIX",
+          "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
+          "BigEndian": "false",
+          "CodePage": "65001",
+          "ByteWidth": "8",
+          "FixPointDecimals": "0"
+        }
+      ]
+    }
+  }
+}

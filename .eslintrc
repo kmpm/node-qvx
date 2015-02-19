@@ -1,0 +1,24 @@
+{
+    "env": {
+        "browser": false,
+        "node": true
+    },
+    "globals": {
+        "Promise": true
+    },
+    "rules": {
+        "semi": 2,
+        "quotes": [2, "single"],
+        "no-use-before-define": "nofunc",
+        "eol-last": 2,
+        "strict": [2, "never"],
+        "no-loop-func": 2,
+        "indent": [2, 2],
+        "space-before-blocks": "always",
+        "space-after-keywords": "always",
+        "max-len": [2, 120, 2],
+        "no-shadow": false,
+        "no-multiple-empty-lines": [1, {"max": 2}]
+    }
+
+}
