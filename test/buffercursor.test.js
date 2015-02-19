@@ -19,4 +19,14 @@ lab.experiment('BufferCursor', function () {
     done();
   });
 
+
+  lab.test('peekByte', function (done) {
+    var buff = new Buffer([4, 65, 66, 67, 68]);
+    var bc = new BufferCursor(buff);
+    bc.seek(3);
+    expect(bc.peekByte()).to.equal(67);
+    expect(bc.tell()).to.equal(3);
+    done();
+  });
+
 });
