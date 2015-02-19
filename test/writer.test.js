@@ -33,9 +33,9 @@ lab.experiment('Writer', function () {
     writer.generateFields({
       'AddressNumber': 10022755,
       'ItemNumber': 10821,
-      'InvoiceDate': new Date(2010, 11, 20, 00, 00, 00),
-      'PromisedDeliveryDate': new Date(2010, 11, 20, 00, 00, 00), //'2010-11-19T23:00:00.000Z',
-      'Date': new Date(2010, 11, 20, 00, 00, 00), //'2010-11-19T23:00:00.000Z',
+      'InvoiceDate': new Date(2010, 11, 20, 0, 0, 0),
+      'PromisedDeliveryDate': new Date(2010, 11, 20, 0, 0, 0), //'2010-11-19T23:00:00.000Z',
+      'Date': new Date(2010, 11, 20, 0, 0, 0), //'2010-11-19T23:00:00.000Z',
       'InvoiceNumber': null,
       'OrderNumber': 214657,
       'ItemDesc': 'Ebony Lemons',
