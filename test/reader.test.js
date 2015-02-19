@@ -81,4 +81,27 @@ lab.experiment('Reader', function () {
     });
 
   });//--read as array
+
+
+    lab.test('read currency', function (done) {
+
+    var reader = new qvx.Reader({objectFormat: 'object'});
+    var fileStream = fs.createReadStream(path.join(__dirname, 'fixtures', 'CurrencyExchangeRate.qvx'));
+    var stringify = JSONStream.stringify(false);
+
+
+    fileStream.pipe(reader)
+    .pipe(stringify)
+    .pipe(concat(function (body) {
+      expect(body).to.exist();
+      fs.writeFileSync('test.reader.currency.log', body);
+      var objs = body.split('\n');
+
+      expect(objs).to.have.length(5);
+      var obj = JSON.parse(objs[0]);
+
+      done();
+    }));
+
+  });//--read as array
 });

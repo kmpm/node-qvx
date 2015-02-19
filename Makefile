@@ -11,7 +11,7 @@ install:
 
 
 lint:
-	eslint index.js lib test
+	eslint index.js lib test bin/qvxcat
 
 test: 
 	lab -c -v
