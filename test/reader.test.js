@@ -83,7 +83,7 @@ lab.experiment('Reader', function () {
   });//--read as array
 
 
-    lab.test('read currency', function (done) {
+  lab.test('read currency', function (done) {
 
     var reader = new qvx.Reader({objectFormat: 'object'});
     var fileStream = fs.createReadStream(path.join(__dirname, 'fixtures', 'CurrencyExchangeRate.qvx'));
@@ -94,11 +94,10 @@ lab.experiment('Reader', function () {
     .pipe(stringify)
     .pipe(concat(function (body) {
       expect(body).to.exist();
-      fs.writeFileSync('test.reader.currency.log', body);
-      var objs = body.split('\n');
+      var expected = fs.readFileSync(path.join(__dirname, 'fixtures', 'CurrencyExchangeRate.json'), {encoding: 'utf8'});
+      expect(body).to.equal(expected);
+      // fs.writeFileSync('test.reader.currency.log', body);
 
-      expect(objs).to.have.length(5);
-      var obj = JSON.parse(objs[0]);
 
       done();
     }));

@@ -10,7 +10,7 @@
         "no-use-before-define": "nofunc",
         "no-loop-func": 2,
         "no-shadow": false,
-        "no-multiple-empty-lines": [0, {"max": 2}],
+        "no-multiple-empty-lines": [1, {"max": 2}],
         "no-unused-vars": 1,
         "strict": [2, "never"],
         "space-before-blocks": "always",
