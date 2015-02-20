@@ -10,17 +10,18 @@ var JSONStream = require('JSONStream');
 var qvx = require('../');
 
 
-lab.experiment('Reader', function () {
+lab.experiment('Inbound', function () {
   lab.test('read as object', function (done) {
 
-    var reader = new qvx.Reader({objectFormat: 'object'});
+    var inbound = new qvx.Inbound({recordFormat: 'object'});
     var fileStream = fs.createReadStream(path.join(__dirname, 'fixtures', 'test_expressor.qvx'));
     var stringify = JSONStream.stringify(false);
 
     var lineCount = 0;
     var headerCount = 0;
 
-    fileStream.pipe(reader)
+    fileStream
+    .pipe(inbound)
     .pipe(stringify)
     .pipe(concat(function (body) {
       expect(body).to.exist();
@@ -34,17 +35,18 @@ lab.experiment('Reader', function () {
       expect(obj).to.be.instanceof(Object);
       expect(obj).to.include(['AddressNumber', 'ItemNumber']);
       expect(Object.keys(obj)).to.have.length(19);
-      fs.writeFileSync('test.reader.hash.log', body);
+      fs.writeFileSync('test.inbound.hash.log', body);
       done();
     }));
 
-    reader.on('line', function (line) {
+    inbound.on('line', function (line) {
       expect(line).to.exist();
       lineCount++;
     });
 
-    reader.on('header', function (header) {
-      expect(header).to.exist();
+    inbound.on('schema', function (schema) {
+      expect(schema).to.exist();
+      expect(schema).to.be.instanceof(qvx.Schema);
       headerCount++;
     });
 
@@ -53,18 +55,19 @@ lab.experiment('Reader', function () {
 
   lab.test('read as array', function (done) {
 
-    var reader = new qvx.Reader({objectFormat: 'array'});
+    var inbound = new qvx.Inbound({recordFormat: 'array'});
     var fileStream = fs.createReadStream(path.join(__dirname, 'fixtures', 'test_expressor.qvx'));
     var stringify = JSONStream.stringify(false);
 
     var lineCount = 0;
 
-    fileStream.pipe(reader)
+    fileStream
+    .pipe(inbound)
     .pipe(stringify)
     .pipe(concat(function (body) {
       expect(body).to.exist();
       expect(lineCount).to.be.above(0);
-      fs.writeFileSync('test.reader.array.log', body);
+      fs.writeFileSync('test.inbound.array.log', body);
       var objs = body.split('\n');
       expect(objs, 'same as lineCount').to.have.length(lineCount);
       expect(objs).to.have.length(120);
@@ -75,7 +78,7 @@ lab.experiment('Reader', function () {
       done();
     }));
 
-    reader.on('line', function (line) {
+    inbound.on('line', function (line) {
       expect(line).to.exist();
       lineCount++;
     });
@@ -85,20 +88,18 @@ lab.experiment('Reader', function () {
 
   lab.test('read currency', function (done) {
 
-    var reader = new qvx.Reader({objectFormat: 'object'});
+    var inbound = new qvx.Inbound({recordFormat: 'object'});
     var fileStream = fs.createReadStream(path.join(__dirname, 'fixtures', 'CurrencyExchangeRate.qvx'));
     var stringify = JSONStream.stringify(false);
 
 
-    fileStream.pipe(reader)
+    fileStream.pipe(inbound)
     .pipe(stringify)
     .pipe(concat(function (body) {
       expect(body).to.exist();
       var expected = fs.readFileSync(path.join(__dirname, 'fixtures', 'CurrencyExchangeRate.json'), {encoding: 'utf8'});
       expect(body).to.equal(expected);
-      // fs.writeFileSync('test.reader.currency.log', body);
-
-
+      fs.writeFileSync('test.inbound.currency.log', body);
       done();
     }));
 
