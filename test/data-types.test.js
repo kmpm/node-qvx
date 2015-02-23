@@ -11,25 +11,36 @@ var DataTypes = require('../lib/data-types');
 
 describe('DataTypes', function () {
 
+  it('::INTEGER({length: 2, _bigEndian: true})', function (done) {
+    var i = DataTypes.INTEGER(2, true).UNSIGNED;
+    expect(i).to.have.property('wireFormat', 'UInt16BE');
+    done();
+  });
+
+
   it('::STRING()', function (done) {
-    var s = DataTypes.STRING();
+    var s = DataTypes.STRING('utf-8', 4);
     expect(s).to.have.property('key', 'STRING');
     expect(s).to.have.property('_encoding', 'utf-8');
-    expect(s).to.have.property('_countedEndian', undefined);
-    expect(s).to.not.have.property('sizeType');
+    expect(s).to.have.property('_bigEndian', false);
+    // expect(s).to.have.property('_counted', false);
+    // expect(s).to.not.have.property('sizeType');
     // expect(s.sizeType).to.have.property('key', 'INTEGER');
     // expect(s.sizeType).to.have.property()
     done();
   });
 
-  it('::STRING("utf-16", 2, "BE")', function (done) {
-    var s = DataTypes.STRING('utf-16', 16, 'BE');
+  it('::STRING("utf-16", 2, true, true)', function (done) {
+    var s = DataTypes.STRING('utf-16', 2, true, true);
     expect(s).to.have.property('key', 'STRING');
     expect(s).to.have.property('_encoding', 'utf-16');
-    expect(s).to.have.property('_countedEndian', 'BE');
-    expect(s).to.have.property('sizeType');
-    expect(s.sizeType).to.have.property('key', 'INTEGER');
-    expect(s.sizeType).to.have.property('_length', 16);
+    // expect(s).to.have.property('_bigEndian', true);
+    // expect(s).to.have.property('_counted', true);
+    // expect(s).to.have.property('_sizeType');
+    // expect(s._sizeType).to.have.property('key', 'INTEGER');
+    // expect(s._sizeType).to.have.property('wireFormat', 'UInt16BE');
+    // expect(s._sizeType).to.have.property('_length', 2);
+    // expect(s._sizeType).to.have.property('_bigEndian', true);
     done();
   });
 
@@ -45,4 +56,14 @@ describe('DataTypes', function () {
     expect(t.key).to.equal('TIMESTAMP');
     done();
   });
+
+  it('::BCD(18)', function (done) {
+    var t = DataTypes.BCD(18);
+    expect(t.key).to.equal('BCD');
+    var spec = t.toQvxSpec();
+    expect(spec).to.have.property('Type', 'QVX_PACKED_BCD');
+    expect(spec).to.have.property('ByteWidth', 18);
+    done();
+  });
+
 });

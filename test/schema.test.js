@@ -42,33 +42,38 @@ lab.experiment('Schema', function () {
     done();
   });
 
-  lab.test('#toQvx()', function (done) {
+  lab.test('#toQvx()', {only: true}, function (done) {
 
     var fields = {
-      'AddressNumber': {type: Number},
-      'ItemNumber': {type: Number},
-      'InvoiceDate': {type: DataTypes.Timestamp},
-      'PromisedDeliveryDate': {type: DataTypes.Timestamp}, //'2010-11-19T23:00:00.000Z',
-      'Date': {type: DataTypes.Timestamp}, //'2010-11-19T23:00:00.000Z',
-      'InvoiceNumber': {type: Number},
-      'OrderNumber': {type: Number},
-      'ItemDesc': {type: String},
-      'SalesQty': {type: Number, decimal: true},
-      'OpenQty': {type: Number, decimal: true},
-      'OpenOrder': {type: Number},
-      'GrossSales': {type: Number},
-      'Sales': {type: Number},
-      'BackOrder': {type: Number, decimal: true},
-      'Cost': {type: Number, decimal: true},
-      'Margin': {type: Number},
-      'SalesKey': {type: String},
-      'ofDaysLate': {type: Number},
-      'ofDaystoShip': {type: Number}
+      'AddressNumber': {type: DataTypes.FLOAT(8)},
+      'ItemNumber': {type: DataTypes.BIGINT()},
+      'InvoiceDate': {type: DataTypes.TIMESTAMP},
+      'PromisedDeliveryDate': {type: DataTypes.TIMESTAMP}, //'2010-11-19T23:00:00.000Z',
+      'Date': {type: DataTypes.TIMESTAMP}, //'2010-11-19T23:00:00.000Z',
+      'InvoiceNumber': {type: DataTypes.FLOAT(8)},
+      'OrderNumber': {type: DataTypes.FLOAT(8)},
+      'ItemDesc': {type: DataTypes.STRING('utf-8', 4)},
+      'SalesQty': {type: DataTypes.BIGINT()},
+      'OpenQty': {type: DataTypes.BIGINT()},
+      'OpenOrder': {type: DataTypes.BIGINT()},
+      'GrossSales': {type: DataTypes.BIGINT()},
+      'Sales': {type: DataTypes.BIGINT()},
+      'BackOrder': {type:  DataTypes.BIGINT()},
+      'Cost': {type: DataTypes.BCD(18).DECIMALS(4)},
+      'Margin': {type: DataTypes.BCD(18).DECIMALS(4)},
+      'SalesKey': {type: DataTypes.STRING('utf-8', 4)},
+      'ofDaysLate': {type: DataTypes.BIGINT()},
+      'ofDaystoShip': {type: DataTypes.BIGINT()}
     };
 
-    var schema = new qvx.Schema({fields: fields});
+    var schema = new qvx.Schema({
+      createdAt: '2015-02-23T13:57:03',
+      fields: fields
+    });
     var xml = schema.toQvx({pretty: true});
-    fs.writeFileSync('test.toqvx.log', xml);
+    var expected = fs.readFileSync(path.join(__dirname, 'fixtures', 'schema.header.xml')).toString();
+    // console.log('comparing', typeof xml, typeof expected)
+    expect(xml).to.deep.eql(expected);
     done();
   });
 });

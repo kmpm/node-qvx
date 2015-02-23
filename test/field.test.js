@@ -16,8 +16,6 @@ describe('Fields', function () {
 
   describe('::fromQvx()', function () {
 
-
-
     it('BIGINT', function (done) {
       var inbound = {
         'FieldName': 'ItemNumber',
@@ -90,7 +88,16 @@ describe('Fields', function () {
         "ByteWidth": "4"
       };
       var f = Field.fromQvx(inbound);
-      expect(f.type.key).to.equal('STRING');
+      var t = f.type;
+      expect(f).to.have.property('name', 'ItemDesc')
+      expect(t).to.have.property('key', 'STRING');
+      expect(t).to.have.property('_extent', 'counted');
+      var spec = t.toQvxSpec();
+      expect(spec).to.have.property('ByteWidth', 4);
+      expect(spec).to.have.property('BigEndian', false);
+      expect(spec).to.have.property('CodePage', 65001);
+      expect(spec).to.have.property('Extent', 'QVX_COUNTED');
+
       done();
     });
 
@@ -111,15 +118,11 @@ describe('Fields', function () {
       var f = Field.fromQvx(inbound);
 
       var t = f.type;
+
       expect(t).to.be.instanceof(DataTypes.TIMESTAMP);
       expect(t).to.have.property('key', 'TIMESTAMP');
       expect(t).to.have.property('wireFormat', 'Date');
-      expect(t).to.have.property('_sizeType')
-      expect(t).to.include({
-        _countedEndian: 'LE',
-        _encoding: 'utf-8',
-        _length: 1
-      });
+      expect(t).to.have.property('_extent', 'counted');
 
       var buf = new Buffer(24);
       buf.writeUInt8(23, 0);
@@ -133,7 +136,6 @@ describe('Fields', function () {
 
       done();
     });
-
 
   });//--fromQvx
 });
