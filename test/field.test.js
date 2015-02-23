@@ -30,6 +30,7 @@ describe('Fields', function () {
       var f = Field.fromQvx(inbound);
       expect(f.type.key).to.equal('BIGINT');
       expect(f.type.wireFormat).to.equal('Int64LE');
+      var spec = Field.toQvx(f);
       done();
     });
 
@@ -47,6 +48,7 @@ describe('Fields', function () {
       var f = Field.fromQvx(inbound);
       expect(f.type.key).to.equal('FLOAT');
       expect(f.type.wireFormat).to.equal('DoubleLE');
+      expect(f.type).to.have.property('_length', 8);
       done();
     });
 
@@ -121,7 +123,7 @@ describe('Fields', function () {
 
       expect(t).to.be.instanceof(DataTypes.TIMESTAMP);
       expect(t).to.have.property('key', 'TIMESTAMP');
-      expect(t).to.have.property('wireFormat', 'Date');
+      expect(t).to.have.property('wireFormat', 'String');
       expect(t).to.have.property('_extent', 'counted');
 
       var buf = new Buffer(24);
@@ -131,7 +133,7 @@ describe('Fields', function () {
       var v = t.read(cursor);
 
       expect(v).to.be.instanceof(Date);
-      var expected = new Date(2015, 1, 22, 19, 48, 10, 1);
+      var expected = new Date(2015, 1, 22, 19, 48, 10, 0);
       expect(v).to.deep.equal(expected);
 
       done();

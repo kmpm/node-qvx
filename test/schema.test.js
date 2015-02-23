@@ -42,11 +42,11 @@ lab.experiment('Schema', function () {
     done();
   });
 
-  lab.test('#toQvx()', {only: true}, function (done) {
+  lab.test('#toQvx()', function (done) {
 
     var fields = {
       'AddressNumber': {type: DataTypes.FLOAT(8)},
-      'ItemNumber': {type: DataTypes.BIGINT()},
+      'ItemNumber': {type: DataTypes.BIGINT().DECIMALS(0)},
       'InvoiceDate': {type: DataTypes.TIMESTAMP},
       'PromisedDeliveryDate': {type: DataTypes.TIMESTAMP}, //'2010-11-19T23:00:00.000Z',
       'Date': {type: DataTypes.TIMESTAMP}, //'2010-11-19T23:00:00.000Z',
@@ -71,8 +71,8 @@ lab.experiment('Schema', function () {
       fields: fields
     });
     var xml = schema.toQvx({pretty: true});
-    var expected = fs.readFileSync(path.join(__dirname, 'fixtures', 'schema.header.xml')).toString();
-    // console.log('comparing', typeof xml, typeof expected)
+    fs.writeFileSync(path.join(__dirname, 'tmp', 'schema.xml'), xml);
+    var expected = fs.readFileSync(path.join(__dirname, 'fixtures', 'schema.xml')).toString();
     expect(xml).to.deep.eql(expected);
     done();
   });

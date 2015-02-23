@@ -8,200 +8,189 @@
   <Fields>
     <QvxFieldHeader>
       <FieldName>AddressNumber</FieldName>
-      <ByteWidth>8</ByteWidth>
+      <Type>QVX_IEEE_REAL</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <FixPointDecimals>0</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_IEEE_REAL</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>8</ByteWidth>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>ItemNumber</FieldName>
-      <ByteWidth>8</ByteWidth>
+      <Type>QVX_SIGNED_INTEGER</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
+      <ByteWidth>8</ByteWidth>
       <FixPointDecimals>0</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_SIGNED_INTEGER</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>InvoiceDate</FieldName>
-      <ByteWidth>1</ByteWidth>
+      <Type>QVX_TEXT</Type>
+      <Extent>QVX_COUNTED</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
-      <CodePage>12001</CodePage>
+      <CodePage>65001</CodePage>
+      <ByteWidth>1</ByteWidth>
       <FieldFormat>
         <Type>TIMESTAMP</Type>
         <Fmt>YYYY-MM-DD hh:mm:ss.fff</Fmt>
       </FieldFormat>
-      <Extent>QVX_COUNTED</Extent>
-      <Type>QVX_TEXT</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>PromisedDeliveryDate</FieldName>
-      <ByteWidth>1</ByteWidth>
+      <Type>QVX_TEXT</Type>
+      <Extent>QVX_COUNTED</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
-      <CodePage>12001</CodePage>
+      <CodePage>65001</CodePage>
+      <ByteWidth>1</ByteWidth>
       <FieldFormat>
         <Type>TIMESTAMP</Type>
         <Fmt>YYYY-MM-DD hh:mm:ss.fff</Fmt>
       </FieldFormat>
-      <Extent>QVX_COUNTED</Extent>
-      <Type>QVX_TEXT</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>Date</FieldName>
-      <ByteWidth>1</ByteWidth>
+      <Type>QVX_TEXT</Type>
+      <Extent>QVX_COUNTED</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
-      <CodePage>12001</CodePage>
+      <CodePage>65001</CodePage>
+      <ByteWidth>1</ByteWidth>
       <FieldFormat>
         <Type>TIMESTAMP</Type>
         <Fmt>YYYY-MM-DD hh:mm:ss.fff</Fmt>
       </FieldFormat>
-      <Extent>QVX_COUNTED</Extent>
-      <Type>QVX_TEXT</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>InvoiceNumber</FieldName>
-      <ByteWidth>8</ByteWidth>
+      <Type>QVX_IEEE_REAL</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <FixPointDecimals>0</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_IEEE_REAL</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>8</ByteWidth>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>OrderNumber</FieldName>
-      <ByteWidth>8</ByteWidth>
+      <Type>QVX_IEEE_REAL</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <FixPointDecimals>0</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_IEEE_REAL</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>8</ByteWidth>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>ItemDesc</FieldName>
-      <ByteWidth>4</ByteWidth>
+      <Type>QVX_TEXT</Type>
+      <Extent>QVX_COUNTED</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <Extent>QVX_COUNTED</Extent>
-      <Type>QVX_TEXT</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>4</ByteWidth>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>SalesQty</FieldName>
-      <ByteWidth>8</ByteWidth>
+      <Type>QVX_SIGNED_INTEGER</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <FixPointDecimals>0</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_SIGNED_INTEGER</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>8</ByteWidth>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>OpenQty</FieldName>
-      <ByteWidth>8</ByteWidth>
+      <Type>QVX_SIGNED_INTEGER</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <FixPointDecimals>0</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_SIGNED_INTEGER</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>8</ByteWidth>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>OpenOrder</FieldName>
-      <ByteWidth>8</ByteWidth>
+      <Type>QVX_SIGNED_INTEGER</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <FixPointDecimals>0</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_SIGNED_INTEGER</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>8</ByteWidth>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>GrossSales</FieldName>
-      <ByteWidth>8</ByteWidth>
+      <Type>QVX_SIGNED_INTEGER</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <FixPointDecimals>0</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_SIGNED_INTEGER</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>8</ByteWidth>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>Sales</FieldName>
-      <ByteWidth>8</ByteWidth>
+      <Type>QVX_SIGNED_INTEGER</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <FixPointDecimals>0</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_SIGNED_INTEGER</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>8</ByteWidth>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>BackOrder</FieldName>
-      <ByteWidth>8</ByteWidth>
+      <Type>QVX_SIGNED_INTEGER</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <FixPointDecimals>0</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_SIGNED_INTEGER</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>8</ByteWidth>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>Cost</FieldName>
-      <ByteWidth>18</ByteWidth>
+      <Type>QVX_PACKED_BCD</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
+      <ByteWidth>18</ByteWidth>
       <FixPointDecimals>4</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_PACKED_BCD</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>Margin</FieldName>
-      <ByteWidth>18</ByteWidth>
+      <Type>QVX_PACKED_BCD</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
+      <ByteWidth>18</ByteWidth>
       <FixPointDecimals>4</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_PACKED_BCD</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>SalesKey</FieldName>
-      <ByteWidth>4</ByteWidth>
+      <Type>QVX_TEXT</Type>
+      <Extent>QVX_COUNTED</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <Extent>QVX_COUNTED</Extent>
-      <Type>QVX_TEXT</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>4</ByteWidth>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>ofDaysLate</FieldName>
-      <ByteWidth>8</ByteWidth>
+      <Type>QVX_SIGNED_INTEGER</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <FixPointDecimals>0</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_SIGNED_INTEGER</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>8</ByteWidth>
     </QvxFieldHeader>
     <QvxFieldHeader>
       <FieldName>ofDaystoShip</FieldName>
-      <ByteWidth>8</ByteWidth>
+      <Type>QVX_SIGNED_INTEGER</Type>
+      <Extent>QVX_FIX</Extent>
+      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
       <BigEndian>false</BigEndian>
       <CodePage>65001</CodePage>
-      <FixPointDecimals>0</FixPointDecimals>
-      <Extent>QVX_FIX</Extent>
-      <Type>QVX_SIGNED_INTEGER</Type>
-      <NullRepresentation>QVX_NULL_FLAG_SUPPRESS_DATA</NullRepresentation>
+      <ByteWidth>8</ByteWidth>
     </QvxFieldHeader>
   </Fields>
 </QvxTableHeader>

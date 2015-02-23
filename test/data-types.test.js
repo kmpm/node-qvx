@@ -11,12 +11,31 @@ var DataTypes = require('../lib/data-types');
 
 describe('DataTypes', function () {
 
-  it('::INTEGER({length: 2, _bigEndian: true})', function (done) {
-    var i = DataTypes.INTEGER(2, true).UNSIGNED;
-    expect(i).to.have.property('wireFormat', 'UInt16BE');
+  it('::FLOAT({length: 8})', function (done) {
+    var f = DataTypes.FLOAT(8);
+    expect(f).to.have.property('wireFormat', 'DoubleLE');
+    var spec = f.toQvxSpec();
+    expect(spec).to.have.property('ByteWidth', 8);
     done();
   });
 
+
+  it('::INTEGER({length: 2, _bigEndian: true})', function (done) {
+    var i = DataTypes.INTEGER(2, true).UNSIGNED;
+    expect(i).to.have.property('wireFormat', 'UInt16BE');
+    expect(i).to.not.have.property('FixPointDecimals');
+    done();
+  });
+
+
+  it('::BIGINT().DECIMALS(0)', function (done) {
+    var bi = DataTypes.BIGINT().DECIMALS(0);
+    expect(bi).to.have.property('_decimals', 0);
+    expect(bi.options).to.have.property('decimals', 0);
+    var spec = bi.toQvxSpec();
+    expect(spec).to.have.property('FixPointDecimals', 0);
+    done();
+  })
 
   it('::STRING()', function (done) {
     var s = DataTypes.STRING('utf-8', 4);

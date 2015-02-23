@@ -35,7 +35,7 @@ lab.experiment('Inbound', function () {
       expect(obj).to.be.instanceof(Object);
       expect(obj).to.include(['AddressNumber', 'ItemNumber']);
       expect(Object.keys(obj)).to.have.length(19);
-      fs.writeFileSync('test.inbound.hash.log', body);
+      fs.writeFileSync(path.join(__dirname, 'tmp', 'inbound.hash.log'), body);
       done();
     }));
 
@@ -67,7 +67,7 @@ lab.experiment('Inbound', function () {
     .pipe(concat(function (body) {
       expect(body).to.exist();
       expect(lineCount).to.be.above(0);
-      fs.writeFileSync('test.inbound.array.log', body);
+      fs.writeFileSync(path.join(__dirname, 'tmp', 'inbound.array.log'), body);
       var objs = body.split('\n');
       expect(objs, 'same as lineCount').to.have.length(lineCount);
       expect(objs).to.have.length(120);
@@ -99,7 +99,7 @@ lab.experiment('Inbound', function () {
       expect(body).to.exist();
       var expected = fs.readFileSync(path.join(__dirname, 'fixtures', 'CurrencyExchangeRate.json'), {encoding: 'utf8'});
       expect(body).to.equal(expected);
-      fs.writeFileSync('test.inbound.currency.log', body);
+      fs.writeFileSync(path.join(__dirname, 'tmp', 'inbound.currency.log'), body);
       done();
     }));
 
