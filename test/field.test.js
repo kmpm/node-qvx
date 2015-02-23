@@ -114,11 +114,11 @@ describe('Fields', function () {
       expect(t).to.be.instanceof(DataTypes.TIMESTAMP);
       expect(t).to.have.property('key', 'TIMESTAMP');
       expect(t).to.have.property('wireFormat', 'Date');
-
+      expect(t).to.have.property('_sizeType')
       expect(t).to.include({
         _countedEndian: 'LE',
         _encoding: 'utf-8',
-        _length: 8
+        _length: 1
       });
 
       var buf = new Buffer(24);
