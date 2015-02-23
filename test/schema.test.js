@@ -1,7 +1,7 @@
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
-var debug = require('debug')('qvx:test:schema');
+// var debug = require('debug')('qvx:test:schema');
 
 var fs = require('fs');
 var path = require('path');
@@ -24,7 +24,7 @@ lab.experiment('Schema', function () {
     expect(schema).to.have.property('useSeparator', true);
     expect(schema.fields).to.have.length(19);
 
-    var bc = new ExtendedCursor(fs.readFileSync(EXPRESSOR_BIN_FILE))
+    var bc = new ExtendedCursor(fs.readFileSync(EXPRESSOR_BIN_FILE));
     var recCount = 0;
 
     var inbound = schema.bindReadCursor(bc);
@@ -34,8 +34,8 @@ lab.experiment('Schema', function () {
     recCount++;
 
     while (!inbound.eof()) {
-        rec = inbound.readRecord();
-        recCount++;
+      rec = inbound.readRecord();
+      recCount++;
     }
     expect(recCount).to.equal(120);
 
@@ -58,7 +58,7 @@ lab.experiment('Schema', function () {
       'OpenOrder': {type: DataTypes.BIGINT()},
       'GrossSales': {type: DataTypes.BIGINT()},
       'Sales': {type: DataTypes.BIGINT()},
-      'BackOrder': {type:  DataTypes.BIGINT()},
+      'BackOrder': {type: DataTypes.BIGINT()},
       'Cost': {type: DataTypes.BCD(18).DECIMALS(4)},
       'Margin': {type: DataTypes.BCD(18).DECIMALS(4)},
       'SalesKey': {type: DataTypes.STRING('utf-8', 4)},

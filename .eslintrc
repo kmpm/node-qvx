@@ -19,7 +19,22 @@
         "quotes": [2, "single"],
         "indent": [2, 2, {indentSwitchCase: true}],
         "eol-last": 2,
-        "max-len": [2, 120, 2]
+        "max-len": [2, 120, 2],
+        "no-underscore-dangle": 0,
+        "new-cap": [1, {
+            "capIsNewExceptions": [
+                "QVX_UNSIGNED_INTEGER", 
+                "FLOAT",
+                "INTEGER",
+                "BIGINT",
+                "DUAL",
+                "BCD",
+                "STRING",
+                "TEXT",
+                "TIMESTAMP",
+                "DECIMALS"
+            ]
+        }]
     }
 
 }

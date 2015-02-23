@@ -1,7 +1,7 @@
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
-var debug = require('debug')('qvx:test:data-types');
+// var debug = require('debug')('qvx:test:data-types');
 
 var describe = lab.experiment;
 var it = lab.test;
@@ -35,7 +35,7 @@ describe('DataTypes', function () {
     var spec = bi.toQvxSpec();
     expect(spec).to.have.property('FixPointDecimals', 0);
     done();
-  })
+  });
 
   it('::STRING()', function (done) {
     var s = DataTypes.STRING('utf-8', 4);

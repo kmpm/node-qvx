@@ -3,7 +3,7 @@ var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
 var describe = lab.describe;
 var it = lab.test;
-var debug = require('debug')('qvx:test:field');
+// var debug = require('debug')('qvx:test:field');
 
 var qvx = require('..');
 
@@ -31,6 +31,7 @@ describe('Fields', function () {
       expect(f.type.key).to.equal('BIGINT');
       expect(f.type.wireFormat).to.equal('Int64LE');
       var spec = Field.toQvx(f);
+      expect(spec).to.be.an('object');
       done();
     });
 
@@ -64,11 +65,11 @@ describe('Fields', function () {
         ByteWidth: '0',
         FixPointDecimals: '0',
         FieldFormat: {
-          Type:'UNKNOWN',
+          Type: 'UNKNOWN',
           nDec: '0',
           UseThou: '0'
         },
-        BigEndian: 'false',
+        BigEndian: 'false'
       };
 
       var f = Field.fromQvx(inbound);
@@ -81,17 +82,17 @@ describe('Fields', function () {
 
     it('STRING', function (done) {
       var inbound = {
-        "FieldName": "ItemDesc",
-        "Type": "QVX_TEXT",
-        "Extent": "QVX_COUNTED",
-        "NullRepresentation": "QVX_NULL_FLAG_SUPPRESS_DATA",
-        "BigEndian": "false",
-        "CodePage": "65001",
-        "ByteWidth": "4"
+        'FieldName': 'ItemDesc',
+        'Type': 'QVX_TEXT',
+        'Extent': 'QVX_COUNTED',
+        'NullRepresentation': 'QVX_NULL_FLAG_SUPPRESS_DATA',
+        'BigEndian': 'false',
+        'CodePage': '65001',
+        'ByteWidth': '4'
       };
       var f = Field.fromQvx(inbound);
       var t = f.type;
-      expect(f).to.have.property('name', 'ItemDesc')
+      expect(f).to.have.property('name', 'ItemDesc');
       expect(t).to.have.property('key', 'STRING');
       expect(t).to.have.property('_extent', 'counted');
       var spec = t.toQvxSpec();
@@ -141,4 +142,3 @@ describe('Fields', function () {
 
   });//--fromQvx
 });
-

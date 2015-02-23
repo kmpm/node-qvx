@@ -20,6 +20,7 @@ describe('Outbound', function () {
   it('should construct', function (done) {
     var schema = new qvx.Schema();
     var outbound = new qvx.Outbound(schema);
+    expect(outbound).to.be.instanceof(qvx.Outbound);
     done();
   });
 
@@ -39,7 +40,7 @@ describe('Outbound', function () {
       'OpenOrder': {type: DataTypes.BIGINT().DECIMALS(0)},
       'GrossSales': {type: DataTypes.BIGINT().DECIMALS(0)},
       'Sales': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'BackOrder': {type:  DataTypes.BIGINT().DECIMALS(0)},
+      'BackOrder': {type: DataTypes.BIGINT().DECIMALS(0)},
       'Cost': {type: DataTypes.BCD(18).DECIMALS(4)},
       'Margin': {type: DataTypes.BCD(18).DECIMALS(4)},
       'SalesKey': {type: DataTypes.STRING('utf-8', 4)},
@@ -58,8 +59,8 @@ describe('Outbound', function () {
       'AddressNumber': 10022755,
       'ItemNumber': 10821,
       'InvoiceDate': null,
-      'PromisedDeliveryDate': new Date(2010, 10, 20, 00, 00, 00),
-      'Date': new Date(2010, 10, 20, 00, 00, 00),
+      'PromisedDeliveryDate': new Date(2010, 10, 20, 0, 0, 0),
+      'Date': new Date(2010, 10, 20, 0, 0, 0),
       'InvoiceNumber': null,
       'OrderNumber': 214657,
       'ItemDesc': 'Ebony Lemons',
