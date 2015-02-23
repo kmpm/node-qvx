@@ -5,15 +5,18 @@ var debug = require('debug')('qvx:test:schema');
 
 var fs = require('fs');
 var path = require('path');
-var ExtendedCursor = require('../lib/extendedcursor');
+var ExtendedCursor = require('../lib/extended-cursor');
 
-var Schema = require('../lib/schema');
+var qvx = require('..');
+var Schema = qvx.Schema;
+var DataTypes = qvx.DataTypes;
+
 
 var EXPRESSOR_BIN_FILE = path.join(__dirname, 'fixtures', 'test_expressor.bin');
 
 
-lab.experiment('Schema from qvx', function () {
-  lab.test('expressor', function (done) {
+lab.experiment('Schema', function () {
+  lab.test('#fromQvx(expressor)', function (done) {
     var e = require('./fixtures/test_expressor_header.json');
 
     var schema = Schema.fromQvx(e);
@@ -36,6 +39,36 @@ lab.experiment('Schema from qvx', function () {
     }
     expect(recCount).to.equal(120);
 
+    done();
+  });
+
+  lab.test('#toQvx()', function (done) {
+
+    var fields = {
+      'AddressNumber': {type: Number},
+      'ItemNumber': {type: Number},
+      'InvoiceDate': {type: DataTypes.Timestamp},
+      'PromisedDeliveryDate': {type: DataTypes.Timestamp}, //'2010-11-19T23:00:00.000Z',
+      'Date': {type: DataTypes.Timestamp}, //'2010-11-19T23:00:00.000Z',
+      'InvoiceNumber': {type: Number},
+      'OrderNumber': {type: Number},
+      'ItemDesc': {type: String},
+      'SalesQty': {type: Number, decimal: true},
+      'OpenQty': {type: Number, decimal: true},
+      'OpenOrder': {type: Number},
+      'GrossSales': {type: Number},
+      'Sales': {type: Number},
+      'BackOrder': {type: Number, decimal: true},
+      'Cost': {type: Number, decimal: true},
+      'Margin': {type: Number},
+      'SalesKey': {type: String},
+      'ofDaysLate': {type: Number},
+      'ofDaystoShip': {type: Number}
+    };
+
+    var schema = new qvx.Schema({fields: fields});
+    var xml = schema.toQvx({pretty: true});
+    fs.writeFileSync('test.toqvx.log', xml);
     done();
   });
 });

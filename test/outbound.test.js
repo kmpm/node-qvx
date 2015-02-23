@@ -16,22 +16,16 @@ var DataTypes = QvxField.DataTypes;
 
 var helper = require('./helper');
 
-lab.experiment('Writer', function () {
-
-  lab.test('#headerToXml', function (done) {
-
-    var writer = helper.createWriter();
-    var xml = writer.headerToXml();
-    fs.writeFileSync('test.headerToXml.log', xml);
-    done();
-  });
+lab.experiment('Outbound', function () {
 
 
-  lab.test('Transform', function (done) {
-    var writer = helper.createWriter();
-    var src = require('./fixtures/expressor_single_hash.json');
 
 
-  })
+  // lab.test('Transform', function (done) {
+  //   var writer = helper.createWriter();
+  //   var src = require('./fixtures/expressor_single_hash.json');
+
+
+  // })
 
 });//--Writer
