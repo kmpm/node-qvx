@@ -118,8 +118,9 @@ describe('Schema', function () {
       });
       expect(spec.FieldFormat).to.include({
         Type: 'TIMESTAMP',
-        Fmt: 'YYYY-MM-DD HH:mm:ss'
-      });
+        Fmt: 'YYYY-MM-DD hh:mm:ss'
+      })
+      .to.not.have.keys('nDec', 'Dec', 'Thou', 'UseThou');
       done();
     });
 
@@ -143,7 +144,8 @@ describe('Schema', function () {
         BigEndian: false,
         CodePage: 65001,
         ByteWidth: 4
-      });
+      })
+      .to.not.have.property('FixPointDecimals');
       done();
     });
 

@@ -25,35 +25,33 @@ describe('Outbound', function () {
   });
 
 
-  it('should transform', function (done) {
+  it('should transform', {only: true}, function (done) {
     var fields = {
-      'AddressNumber': {type: DataTypes.FLOAT(8)},
-      'ItemNumber': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'InvoiceDate': {type: DataTypes.TIMESTAMP('utf-8', 1)},
-      'PromisedDeliveryDate': {type: DataTypes.TIMESTAMP}, //'2010-11-19T23:00:00.000Z',
-      'Date': {type: DataTypes.TIMESTAMP}, //'2010-11-19T23:00:00.000Z',
-      'InvoiceNumber': {type: DataTypes.FLOAT(8)},
-      'OrderNumber': {type: DataTypes.FLOAT(8)},
-      'ItemDesc': {type: DataTypes.STRING('utf-8', 4)},
-      'SalesQty': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'OpenQty': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'OpenOrder': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'GrossSales': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'Sales': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'BackOrder': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'Cost': {type: DataTypes.BCD(18).DECIMALS(4)},
-      'Margin': {type: DataTypes.BCD(18).DECIMALS(4)},
-      'SalesKey': {type: DataTypes.STRING('utf-8', 4)},
-      'ofDaysLate': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'ofDaystoShip': {type: DataTypes.BIGINT().DECIMALS(0)}
+      'AddressNumber': {type: Number},
+      'ItemNumber': {type: Number, field: 'signed', bytes: 8, decimals: 0},
+      'InvoiceDate': {type: Date},
+      'PromisedDeliveryDate': {type: Date}, //'2010-11-19T23:00:00.000Z',
+      'Date': {type: Date}, //'2010-11-19T23:00:00.000Z',
+      'InvoiceNumber': {type: Number},
+      'OrderNumber': {type: Number},
+      'ItemDesc': {type: String},
+      'SalesQty': {type: Number, bytes: 8, field: 'signed', decimals: 0},
+      'OpenQty': {type: Number, bytes: 8, field: 'signed', decimals: 0},
+      'OpenOrder': {type: Number, field: 'signed', bytes: 8, decimals: 0},
+      'GrossSales': {type: Number, field: 'signed', bytes: 8, decimals: 0},
+      'Sales': {type: Number, field: 'signed', bytes: 8, decimals: 0},
+      'BackOrder': {type: Number, field: 'signed', bytes: 8, decimals: 0},
+      'Cost': {type: Number, field: 'bcd', extent: 'fix', decimals: 4, bytes: 18},
+      'Margin': {type: Number, field: 'bcd', extent: 'fix', decimals: 4, bytes: 18},
+      'SalesKey': {type: String},
+      'ofDaysLate': {type: Number, field: 'signed', decimals: 0},
+      'ofDaystoShip': {type: Number, field: 'signed', decimals: 0}
     };
 
-    var schema = new qvx.Schema({
+    var schema = new qvx.Schema(fields, {
       createdAt: '2012-03-06 19:22:15',
       creator: false,
-      tableName: 'test',
-      recordFormat: 'object',
-      fields: fields
+      tableName: 'test'
     });
 
     var data = {
@@ -87,7 +85,7 @@ describe('Outbound', function () {
       fs.writeFileSync(path.join(__dirname, 'tmp', 'test.qvx'), body);
       var actual = new Buffer(body);
       var expected = fs.readFileSync(path.join(__dirname, 'fixtures', 'test_expressor_single.qvx'));
-      var size = 100;
+      var size = 200;
       for (var i = 0; i < actual.length; i += size) {
         expect(actual.slice(i, i + size).toString('utf-8'), i).to.eql(expected.slice(i, i + size).toString('utf-8'));
       }
@@ -98,39 +96,36 @@ describe('Outbound', function () {
 
 
   it('aaaahrrdd', function (done) {
-
-
     var fields = {
-      'AddressNumber': {type: DataTypes.FLOAT(8)},
-      'ItemNumber': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'InvoiceDate': {type: DataTypes.TIMESTAMP('utf-8', 1)},
-      'PromisedDeliveryDate': {type: DataTypes.TIMESTAMP}, //'2010-11-19T23:00:00.000Z',
-      'Date': {type: DataTypes.TIMESTAMP}, //'2010-11-19T23:00:00.000Z',
-      'InvoiceNumber': {type: DataTypes.FLOAT(8)},
-      'OrderNumber': {type: DataTypes.FLOAT(8)},
-      'ItemDesc': {type: DataTypes.STRING('utf-8', 4)},
-      'SalesQty': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'OpenQty': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'OpenOrder': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'GrossSales': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'Sales': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'BackOrder': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'Cost': {type: DataTypes.BCD(18).DECIMALS(4)},
-      'Margin': {type: DataTypes.BCD(18).DECIMALS(4)},
-      'SalesKey': {type: DataTypes.STRING('utf-8', 4)},
-      'ofDaysLate': {type: DataTypes.BIGINT().DECIMALS(0)},
-      'ofDaystoShip': {type: DataTypes.BIGINT().DECIMALS(0)}
+      'AddressNumber': {type: Number},
+      'ItemNumber': {type: Number, field: 'signed', bytes: 8, decimals: 0},
+      'InvoiceDate': {type: Date},
+      'PromisedDeliveryDate': {type: Date}, //'2010-11-19T23:00:00.000Z',
+      'Date': {type: Date}, //'2010-11-19T23:00:00.000Z',
+      'InvoiceNumber': {type: Number},
+      'OrderNumber': {type: Number},
+      'ItemDesc': {type: String},
+      'SalesQty': {type: Number, bytes: 8, decimals: 0},
+      'OpenQty': {type: Number, bytes: 8, decimals: 0},
+      'OpenOrder': {type: Number, field: 'signed', bytes: 8, decimals: 0},
+      'GrossSales': {type: Number, field: 'signed', bytes: 8, decimals: 0},
+      'Sales': {type: Number, field: 'signed', bytes: 8, decimals: 0},
+      'BackOrder': {type: Number, field: 'signed', bytes: 8, decimals: 0},
+      'Cost': {type: Number, field: 'bcd', extent: 'fix', decimals: 4, bytes: 18},
+      'Margin': {type: Number, field: 'bcd', extent: 'fix', decimals: 4, bytes: 18},
+      'SalesKey': {type: String},
+      'ofDaysLate': {type: Number, decimals: 0},
+      'ofDaystoShip': {type: Number, decimals: 0}
     };
 
-    var schema = new qvx.Schema({
+    var schema = new qvx.Schema({}, {
       createdAt: '2012-03-06 19:22:15',
       creator: false,
       tableName: 'test',
-      recordFormat: 'object',
       fields: fields
     });
 
-    var outbound = new qvx.Outbound(schema);
+    var outbound = new qvx.Outbound(schema, {recordFormat: 'object'});
 
     var file = fs.createWriteStream(path.join(__dirname, 'tmp', 'streamed.qvx'));
 
