@@ -5,6 +5,12 @@
   <CreateUtcTime>2015-02-23T13:57:03</CreateUtcTime>
   <TableName>table</TableName>
   <UsesSeparatorByte>true</UsesSeparatorByte>
+  <Creator>
+    <Company>node-qvx</Company>
+    <MajorVersion>0</MajorVersion>
+    <MinorVersion>0</MinorVersion>
+    <MaintenanceVersion>3</MaintenanceVersion>
+  </Creator>
   <Fields>
     <QvxFieldHeader>
       <FieldName>AddressNumber</FieldName>

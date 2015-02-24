@@ -50,6 +50,7 @@ describe('Outbound', function () {
 
     var schema = new qvx.Schema({
       createdAt: '2012-03-06 19:22:15',
+      creator: false,
       tableName: 'test',
       recordFormat: 'object',
       fields: fields
