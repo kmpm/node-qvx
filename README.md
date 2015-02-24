@@ -3,7 +3,8 @@ node-qvx
 Read and Write Qlik QVX data using Streams
 
 ___ALPHA___
-
+## Status
+[![Build Status](https://travis-ci.org/kmpm/node-qvx.svg?branch=master)](https://travis-ci.org/kmpm/node-qvx)
 
 Documentation needs to be done but it's still in a quite unstable time
 so please have a look at the tests.
