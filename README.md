@@ -9,6 +9,8 @@ ___ALPHA___
 Documentation needs to be done but it's still in a quite unstable time
 so please have a look at the tests.
 
+Have a look at https://github.com/kmpm/node-qvxserver for a Hapi based webserver that will give you qvx data.
+
 
 Examples
 ---------
