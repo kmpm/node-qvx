@@ -25,22 +25,24 @@ describe('Schema', function () {
         InvoiceDate: {type: 'Date'}
       });
 
-      expect(schema.paths).to.have.property('InvoiceDate')
+      expect(schema.fields[0])
       .to.be.instanceof(qvx.DataTypes.Date)
       .to.include({
+        name: 'InvoiceDate',
         field: 'text',
         bytes: 1,
         endian: 'little',
         extent: 'counted',
         whenNull: 'supress',
         encoding: 'utf-8',
+        wireFormat: 'String'
       })
       .to.have.property('format')
       .to.include({
         type: 'TIMESTAMP',
         fmt: 'YYYY-MM-DD HH:mm:ss'
       });
-      // console.log(schema.paths.InvoiceDate);
+      // console.log(schema.fields.InvoiceDate);
       done();
     });
   });
@@ -51,10 +53,13 @@ describe('Schema', function () {
         AddressNumber: {type: Number}
       });
 
-      expect(schema.paths.AddressNumber).to.be.instanceof(qvx.DataTypes.Number);
-      expect(schema.paths.AddressNumber).to.have.property('type', 'Number');
+      expect(schema.fields[0]).to.be.instanceof(qvx.DataTypes.Number)
+      .to.include({
+        type: 'Number',
+        wireFormat: 'DoubleLE'
+      });
 
-      var addrSpec = schema.paths.AddressNumber.toQvxSpec();
+      var addrSpec = schema.fields[0].toQvxSpec();
       expect(addrSpec).to.include({
         FieldName: 'AddressNumber',
         Type: 'QVX_IEEE_REAL',
@@ -68,12 +73,16 @@ describe('Schema', function () {
     });
 
 
-    it('should have Int64 (ItemNumber)', function (done) {
+    it('should have Int64LE (ItemNumber)', function (done) {
       var schema = new Schema({
         ItemNumber: {type: Number, field: 'signed', bytes: 8, decimals: 0},
       });
 
-      var spec = schema.paths.ItemNumber.toQvxSpec();
+      expect(schema.fields[0]).to.include({
+        wireFormat: 'Int64LE'
+      });
+
+      var spec = schema.fields[0].toQvxSpec();
       expect(spec).to.include({
         FieldName: 'ItemNumber',
         Type: 'QVX_SIGNED_INTEGER',
@@ -93,7 +102,11 @@ describe('Schema', function () {
         InvoiceDate: {type: Date},
       });
 
-      var spec = schema.paths.InvoiceDate.toQvxSpec();
+      expect(schema.fields[0]).to.include({
+        wireFormat: 'String'
+      });
+
+      var spec = schema.fields[0].toQvxSpec();
       expect(spec).to.include({
         FieldName: 'InvoiceDate',
         Type: 'QVX_TEXT',
@@ -116,7 +129,12 @@ describe('Schema', function () {
       var schema = new Schema({
         ItemDesc: {type: String}
       });
-      var spec = schema.paths.ItemDesc.toQvxSpec();
+
+      expect(schema.fields[0]).to.include({
+        wireFormat: 'String'
+      });
+
+      var spec = schema.fields[0].toQvxSpec();
       expect(spec).to.include({
         FieldName: 'ItemDesc',
         Type: 'QVX_TEXT',
@@ -135,7 +153,11 @@ describe('Schema', function () {
         Margin: {type: Number, field: 'bcd', bytes: 18, decimals: 4, extent: 'fix'}
       });
 
-      var spec = schema.paths.Margin.toQvxSpec();
+      expect(schema.fields[0]).to.include({
+        wireFormat: 'Bcd'
+      });
+
+      var spec = schema.fields[0].toQvxSpec();
       expect(spec).to.include({
         FieldName: 'Margin',
         Type: 'QVX_PACKED_BCD',
@@ -156,8 +178,9 @@ describe('Schema', function () {
       var e = require('./fixtures/test_expressor_header.json');
       var schema = Schema.fromQvx(e);
 
-      var margin = schema.paths.Margin;
+      var margin = schema.fields[15];
       expect(margin).to.deep.include({
+        name: 'Margin',
         field: 'bcd',
         decimals: 4,
         bytes: 18,
@@ -168,8 +191,9 @@ describe('Schema', function () {
       });
 
 
-      var itemDesc = schema.paths.ItemDesc;
+      var itemDesc = schema.fields[7];
       expect(itemDesc).to.deep.include({
+        name: 'ItemDesc',
         field: 'text',
         bytes: 4,
         endian: 'little',
@@ -182,8 +206,9 @@ describe('Schema', function () {
       expect(itemDesc).to.have.property('type', 'String');
 
 
-      var invoiceDate = schema.paths.InvoiceDate;
+      var invoiceDate = schema.fields[2];
       expect(invoiceDate).to.include({
+        name: 'InvoiceDate',
         field: 'text',
         bytes: 1,
         endian: 'little',
@@ -197,10 +222,43 @@ describe('Schema', function () {
         type: 'TIMESTAMP'
       });
 
-      expect(Object.keys(schema.paths)).to.have.length(19);
+      expect(schema.fields).to.have.length(19);
       //console.log('asdf %j', schema);
       done();
-    })
+    });
+
+    it('DUAL', function (done) {
+      var lc = {
+        FieldName: 'LocalCurrency',
+        Type: 'QVX_QV_DUAL',
+        Extent: 'QVX_QV_SPECIAL',
+        NullRepresentation: 'QVX_NULL_NEVER',
+        BigEndian: false,
+        CodePage: 65001,
+        ByteWidth: 0,
+        FixPointDecimals: 0,
+        FieldFormat: {
+          Type: 'UNKNOWN',
+          Fmt: '',
+          nDec: 0,
+          UseThou: 0,
+          Dec: '',
+          Thou: ''
+        }
+      };
+
+      var schema = Schema.fromQvx({
+        QvxTableHeader: {
+          Fields: {
+            QvxFieldHeader: [lc]
+          }
+        }
+      });
+
+      expect(schema.fields).to.have.length(1);
+      expect(schema.fields[0].toQvxSpec()).to.deep.eql(lc);
+      done();
+    });
 
   });
 });
