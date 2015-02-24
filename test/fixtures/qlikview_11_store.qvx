@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+ <QvxTableHeader>
+   <MajorVersion>1</MajorVersion>
+   <MinorVersion>0</MinorVersion>
+   <CreateUtcTime>2015-02-24 10:21:29</CreateUtcTime>
+   <TableName>c</TableName>
+   <UsesSeparatorByte>true</UsesSeparatorByte>
+   <BlockSize>0</BlockSize>
+   <Fields>
+     <QvxFieldHeader>
+       <FieldName>AddressNumber</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>ItemNumber</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>InvoiceDate</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>TIMESTAMP</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt>YYYY-MM-DD hh:mm:ss.fff</Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>PromisedDeliveryDate</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>TIMESTAMP</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt>YYYY-MM-DD hh:mm:ss.fff</Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>Date</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>TIMESTAMP</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt>YYYY-MM-DD hh:mm:ss.fff</Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>InvoiceNumber</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>OrderNumber</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>ItemDesc</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>SalesQty</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>OpenQty</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>OpenOrder</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>GrossSales</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>Sales</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>BackOrder</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>Cost</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>Margin</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>SalesKey</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>ofDaysLate</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+     <QvxFieldHeader>
+       <FieldName>ofDaystoShip</FieldName>
+       <Type>QVX_QV_DUAL</Type>
+       <Extent>QVX_QV_SPECIAL</Extent>
+       <NullRepresentation>QVX_NULL_NEVER</NullRepresentation>
+       <LittleEndian>false</LittleEndian>
+       <CodePage>65001</CodePage>
+       <ByteWidth>0</ByteWidth>
+       <FixPointDecimals>0</FixPointDecimals>
+       <FieldFormat>
+         <Type>UNKNOWN</Type>
+         <nDec>0</nDec>
+         <UseThou>0</UseThou>
+         <Fmt></Fmt>
+         <Dec></Dec>
+         <Thou></Thou>
+       </FieldFormat>
+       <BigEndian>false</BigEndian>
+     </QvxFieldHeader>
+   </Fields>
+ </QvxTableHeader>
+    `ÏcA    Ä"≈@ 2010-11-20 00:00:00 2010-11-20 00:00:00      4
+AEbony Lemons            Y@  11/01/2010_10022755_118      @ÀcA    Äƒ@ 2010-07-19 00:00:00 2010-07-19 00:00:00      ¿rABest Choice Dried Apricots                07/01/2010_10022490_107      ÄacA     V≈@ 2010-11-20 00:00:00 2010-11-20 00:00:00      ‡ÀABBB Best Strawberry Jelly            &@  11/01/2010_10009356_103      ÄacA    ÄÓƒ@ 2010-11-20 00:00:00 2010-11-20 00:00:00      ∏ÀAImagine Frozen Carrots            @  11/01/2010_10009356_103      ¿…cA     √@ 2010-12-30 00:00:00 2010-12-30 00:00:00      òrAHigh Top Cantelope                12/01/2010_10016334_120      ¿…cA    ÄÌ√@ 2010-12-30 00:00:00 2010-12-30 00:00:00      òrAHigh Top Broccoli                12/01/2010_10016334_120      ‡wcA    Äıƒ@ 2010-11-20 00:00:00 2010-11-20 00:00:00      HV
+AImagine Popsicles        ?                    11/01/2010_10025919_108      ‡ÍcA     Üƒ@ 2010-05-30 00:00:00 2010-05-30 00:00:00      ‡lATell Tale Golden Delcious Apples        ø                    05/01/2010_10026839_130      ‡wcA    ÄGƒ@ 2010-11-20 00:00:00 2010-11-20 00:00:00      HV
+AMoms Corned Beef        ?                    11/01/2010_10025919_108      ‡,cA    ÄÚƒ@ 2010-11-26 00:00:00 2010-11-26 00:00:00      @˛	AImagine Ice Cream       @]@                    11/01/2010_10021223_183      ‡,cA    ÄÚƒ@ 2011-01-07 00:00:00 2011-01-07 00:00:00      H
+AImagine Ice Cream       ¿V@                    01/01/2011_10021223_183      ‡,cA    ÄÚƒ@ 2010-12-17 00:00:00 2010-12-17 00:00:00       H
+AImagine Ice Cream       ‡a@                    12/01/2010_10021223_183      ‡,cA    ÄÚƒ@ 2010-12-10 00:00:00 2010-12-10 00:00:00      ¯G
+AImagine Ice Cream       @`@                    12/01/2010_10021223_183      ‡,cA    ÄÚƒ@ 2010-12-03 00:00:00 2010-12-03 00:00:00      ‡G
+AImagine Ice Cream       ÄS@                    12/01/2010_10021223_183       ÑcA     ƒ@ 2010-11-25 00:00:00 2010-11-25 00:00:00      Ä<
+AGood Chardonnay Wine        ?                    11/01/2010_10009633_127      ¿KcA     û√@ 2010-12-02 00:00:00 2010-12-02 00:00:00      †N
+AClub Low Fat Sour Cream        ?                    12/01/2010_10007134_182      ‡wcA     I≈@ 2010-11-20 00:00:00 2010-11-20 00:00:00      HV
+APearl Chardonnay        ?                    11/01/2010_10025919_108      ‡wcA    Äêƒ@ 2010-11-20 00:00:00 2010-11-20 00:00:00      HV
+AFast BBQ Potato Chips        ?                    11/01/2010_10025919_108      ‡wcA     ùƒ@ 2010-11-20 00:00:00 2010-11-20 00:00:00      HV
+AFast Dried Apples        ?                    11/01/2010_10025919_108      ‡wcA    Äßƒ@ 2010-11-20 00:00:00 2010-11-20 00:00:00      HV
+AShady Lake Thai Rice        ?                    11/01/2010_10025919_108      ‡wcA    ÄHƒ@ 2010-11-20 00:00:00 2010-11-20 00:00:00      HV
+AMoms Sliced Ham        ?                    11/01/2010_10025919_108      ÄäcA     ó√@ 2010-11-25 00:00:00 2010-11-25 00:00:00      Ë
+ABlue Label Canned Tuna in Water        ?                    11/01/2010_10011732_136      ÄäcA     ó√@ 2010-11-25 00:00:00 2010-11-25 00:00:00      
+ABlue Label Canned Tuna in Water        ?                    11/01/2010_10011732_136       ÑcA    Äc≈@ 2010-11-21 00:00:00 2010-11-21 00:00:00       W
+ASpecial Corn Puffs        ?                    11/01/2010_10009633_127      ¿cA     ¥≈@ 2010-11-20 00:00:00 2010-11-20 00:00:00      Hü	AAmerican Cole Slaw         @                    11/01/2010_10025022_170       cA     ¥≈@ 2010-11-25 00:00:00 2010-11-25 00:00:00      »ÿ	AAmerican Cole Slaw        ?                    11/01/2010_10025025_143       ÑcA    Ä≈@ 2010-11-13 00:00:00 2010-11-13 00:00:00      C
+AEbony Asparagus        ?                    11/01/2010_10009633_127      `cA     Hƒ@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pQ
+AMoms Sliced Turkey        ?                    11/01/2010_10023003_158       ÑcA     ±ƒ@ 2010-11-21 00:00:00 2010-11-21 00:00:00      XS
+ALandslide Sesame Oil        ?                    11/01/2010_10009633_127       ÃcA    ÄD≈@ 2010-11-19 00:00:00 2010-11-19 00:00:00       6
+ADiscover Manicotti        ?                    11/01/2010_10020449_149       ÃcA     ¥≈@ 2010-11-19 00:00:00 2010-11-19 00:00:00       6
+AAmerican Cole Slaw        ?                    11/01/2010_10020449_149       ÃcA    ÄÆ√@ 2010-11-19 00:00:00 2010-11-19 00:00:00       6
+ABlue Medal Small Brown Eggs        $@                    11/01/2010_10020449_149       ÃcA     Ω√@ 2010-11-19 00:00:00 2010-11-19 00:00:00       6
+AGolden Frozen Broccoli        I@                    11/01/2010_10020449_149       ÃcA     Ω√@ 2010-11-19 00:00:00 2010-11-19 00:00:00      à≈AGolden Frozen Broccoli        I@                    11/01/2010_10020449_149       ÃcA    Äêƒ@ 2010-11-19 00:00:00 2010-11-19 00:00:00       6
+AFast BBQ Potato Chips        I@                    11/01/2010_10020449_149       ÃcA    Äö√@ 2010-11-19 00:00:00 2010-11-19 00:00:00      à≈ABlue Label Rice Soup        @                    11/01/2010_10020449_149       ÑcA    Ä⁄ƒ@ 2010-11-19 00:00:00 2010-11-19 00:00:00      P4
+AGorilla Large Curd Cottage Cheese        ?                    11/01/2010_10009633_127      ÄäcA     ıƒ@ 2010-11-19 00:00:00 2010-11-19 00:00:00      HO
+AImagine Frozen Peas        ?                    11/01/2010_10011732_136      ÄäcA    Äc≈@ 2010-11-22 00:00:00 2010-11-22 00:00:00      XU
+ASpecial Corn Puffs         @                    11/01/2010_10011732_136      ÄäcA    Äc≈@ 2010-11-25 00:00:00 2010-11-25 00:00:00      XL
+ASpecial Corn Puffs        ?                    11/01/2010_10011732_136      ÄäcA    Äc≈@ 2010-11-25 00:00:00 2010-11-25 00:00:00      HL
+ASpecial Corn Puffs        ?                    11/01/2010_10011732_136      ÄäcA    Äc≈@ 2010-11-22 00:00:00 2010-11-22 00:00:00      òV
+ASpecial Corn Puffs        ?                    11/01/2010_10011732_136      @ßcA     ï√@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+ABlue Label Turkey Noodle Soup        I@                    11/01/2010_10007866_149      @ßcA     ò√@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+ABlue Label Large Canned Shrimp        $@                    11/01/2010_10007866_149      @ßcA     ¥≈@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+AAmerican Cole Slaw        @                    11/01/2010_10007866_149      @ßcA     ó√@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+ABlue Label Canned Tuna in Water        D@                    11/01/2010_10007866_149      @ßcA    Äù√@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+AClub Low Fat Cottage Cheese        4@                    11/01/2010_10007866_149      @ßcA    Äó√@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+ABlue Label Canned Tuna in Oil        I@                    11/01/2010_10007866_149      @ßcA     ñ√@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+ABlue Label Canned Peas        I@                    11/01/2010_10007866_149      @ßcA    Äå√@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+AWashington Cranberry Juice        >@                    11/01/2010_10007866_149      @ßcA    Äp≈@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+ABig City Canned Peaches        >@                    11/01/2010_10007866_149      @ßcA    Äã√@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+AWashington Diet Cola        >@                    11/01/2010_10007866_149      @ßcA    Ä∂√@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+AGolden Frozen Mushroom Pizza        4@                    11/01/2010_10007866_149      @ßcA     í√@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+ABlue Label Canned Yams        4@                    11/01/2010_10007866_149      @ßcA     Ø√@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+ABlue Medal Large Brown Eggs        4@                    11/01/2010_10007866_149      @ßcA    ÄUƒ@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+ABig Time Grape Popsicles        B@                    11/01/2010_10007866_149      @ßcA     √@ 2010-11-26 00:00:00 2010-11-26 00:00:00      pM
+AHigh Top Cantelope        @                    11/01/2010_10007866_149      †™cA    ÄMƒ@ 2010-11-26 00:00:00 2010-11-26 00:00:00      òÃABig Time Frozen Chicken Breast        ?                    11/01/2010_10020181_134      †™cA     ¥≈@ 2010-11-26 00:00:00 2010-11-26 00:00:00      Pú	AAmerican Cole Slaw        ?                    11/01/2010_10020181_134      @∆cA     ¥≈@ 2010-11-26 00:00:00 2010-11-26 00:00:00      Ä¬	AAmerican Cole Slaw         @                    11/01/2010_10022450_167      ‡ÇcA     ¥≈@ 2010-11-26 00:00:00 2010-11-26 00:00:00       Ù	AAmerican Cole Slaw        $@                    11/01/2010_10021911_175      †™cA    ÄUƒ@ 2010-11-26 00:00:00 2010-11-26 00:00:00      †E
+ABig Time Grape Popsicles         @                    11/01/2010_10020181_134      †™cA    ÄUƒ@ 2010-11-26 00:00:00 2010-11-26 00:00:00      †E
+ABig Time Grape Popsicles         @                    11/01/2010_10020181_134      ‡
+cA    ÄÚ√@ 2010-11-26 00:00:00 2010-11-26 00:00:00      Hª	AHigh Top Tangerines       @_@                    11/01/2010_10000471_154      ‡
+cA    Ä'ƒ@ 2010-11-26 00:00:00 2010-11-26 00:00:00      Hª	AExcellent Orange Juice       @_@                    11/01/2010_10000471_154      Ä*cA     %≈@ 2010-11-26 00:00:00 2010-11-26 00:00:00      `*
+AEbony Mandarin Oranges        ?                    11/01/2010_10021204_120      Ä*cA    Ä:≈@ 2010-11-26 00:00:00 2010-11-26 00:00:00      `*
+ANationeel Grape Fruit Roll        ?                    11/01/2010_10021204_120      Ä*cA     0≈@ 2010-11-26 00:00:00 2010-11-26 00:00:00      `*
+ANationeel Lemon Cookies        ?                    11/01/2010_10021204_120      Ä*cA    Ä;≈@ 2010-11-26 00:00:00 2010-11-26 00:00:00      `*
+ANationeel Raisins        ?                    11/01/2010_10021204_120      Ä*cA     :≈@ 2010-11-26 00:00:00 2010-11-26 00:00:00      `*
+ANationeel Raspberry Fruit Roll        ?                    11/01/2010_10021204_120      Ä*cA     ;≈@ 2010-11-26 00:00:00 2010-11-26 00:00:00      `*
+ANationeel Dried Dates        ?                    11/01/2010_10021204_120      `cA     ¥≈@ 2010-11-25 00:00:00 2010-11-25 00:00:00      ⁄	AAmerican Cole Slaw        B@                    11/01/2010_10012715_180      ÄäcA     ùƒ@ 2010-11-22 00:00:00 2010-11-22 00:00:00      ËS
+AFast Dried Apples        ?                    11/01/2010_10011732_136      ‡cA     ï√@ 2010-11-27 00:00:00 2010-11-27 00:00:00      ‡C	ABlue Label Turkey Noodle Soup        i@                    11/01/2010_10025063_162      @lcA    Ä≥ƒ@ 2010-11-27 00:00:00 2010-11-27 00:00:00      hM
+ALandslide French Roast Coffee        ?                    11/01/2010_10023778_124      @lcA     ¥ƒ@ 2010-11-27 00:00:00 2010-11-27 00:00:00      hM
+ALandslide Decaf Coffee        ?                    11/01/2010_10023778_124      ‡cA     ∑√@ 2010-11-27 00:00:00 2010-11-27 00:00:00      ¯ıAGolden Apple Cinnamon Waffles       @@                    11/01/2010_10025063_162      ¿KcA    Äµ√@ 2010-11-18 00:00:00 2010-11-18 00:00:00      à
+AGolden Frozen Pepperoni Pizza        9@                    11/01/2010_10007134_182      ¿KcA    Äµ√@ 2010-11-27 00:00:00 2010-11-27 00:00:00      @Ÿ	AGolden Frozen Pepperoni Pizza        I@                    11/01/2010_10007134_182      ¿KcA    Äµ√@ 2010-11-18 00:00:00 2010-11-18 00:00:00      ¯8
+AGolden Frozen Pepperoni Pizza        9@                    11/01/2010_10007134_182      ¿KcA    Äµ√@ 2010-11-27 00:00:00 2010-11-27 00:00:00      h≤	AGolden Frozen Pepperoni Pizza        ?                    11/01/2010_10007134_182      ¿KcA    Äµ√@ 2010-12-02 00:00:00 2010-12-02 00:00:00      †N
+AGolden Frozen Pepperoni Pizza        9@                    12/01/2010_10007134_182      ‡cA    Äµ√@ 2010-11-27 00:00:00 2010-11-27 00:00:00      ÿˇ	AGolden Frozen Pepperoni Pizza       à≥@                    11/01/2010_10025063_162      ‡cA    Äµ√@ 2010-12-19 00:00:00 2010-12-19 00:00:00      ò	AGolden Frozen Pepperoni Pizza       à£@                    12/01/2010_10025063_162      @EcA    Äûƒ@ 2010-11-27 00:00:00 2010-11-27 00:00:00       7
+AFast Raspberry Fruit Roll        I@                    11/01/2010_10021418_130       	cA     ò√@ 2010-11-27 00:00:00 2010-11-27 00:00:00      †
+ABlue Label Large Canned Shrimp       ÄI@                    11/01/2010_10000456_119      `$cA    ÄUƒ@ 2010-11-27 00:00:00 2010-11-27 00:00:00      HH
+ABig Time Grape Popsicles       @_@                    11/01/2010_10015011_142       ¨cA    Äµ√@ 2010-11-27 00:00:00 2010-11-27 00:00:00      8ª	AGolden Frozen Pepperoni Pizza        I@                    11/01/2010_10022240_111       ¨cA    Äûƒ@ 2010-11-27 00:00:00 2010-11-27 00:00:00      8ª	AFast Raspberry Fruit Roll        I@                    11/01/2010_10022240_111       ¨cA    Äí√@ 2010-11-27 00:00:00 2010-11-27 00:00:00      8ª	ABlue Label Vegetable Soup        Y@                    11/01/2010_10022240_111      ‡cA    Äû√@ 2010-11-20 00:00:00 2010-11-20 00:00:00      ê/
+AClub Sour Cream        i@                    11/01/2010_10025063_162      ‡cA    Äû√@ 2010-11-27 00:00:00 2010-11-27 00:00:00      ‡C
+AClub Sour Cream       @@                    11/01/2010_10025063_162      @lcA    Äµ√@ 2010-11-27 00:00:00 2010-11-27 00:00:00      ®J	AGolden Frozen Pepperoni Pizza       v@                    11/01/2010_10023778_124      ‡"cA     ã√@ 2010-11-27 00:00:00 2010-11-27 00:00:00      @A
+AWashington Cola         @                    11/01/2010_10025239_121      ¿KcA     ≤√@ 2010-11-18 00:00:00 2010-11-18 00:00:00      ¯8
+AGolden Frozen Chicken Breast        9@                    11/01/2010_10007134_182      ÄäcA     Æ√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      T
+ARed Spade Sliced Chicken        ?                    11/01/2010_10011732_136       &cA    Äô√@ 2010-11-21 00:00:00 2010-11-21 00:00:00       •	ABlue Label Fancy Canned Oysters        ?                    11/01/2010_10025264_162       &cA    Äô√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      0•	ABlue Label Fancy Canned Oysters        ?                    11/01/2010_10025264_162       &cA    Äô√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      –§	ABlue Label Fancy Canned Oysters        ?                    11/01/2010_10025264_162       &cA    Äô√@ 2010-11-20 00:00:00 2010-11-20 00:00:00      Ë§	ABlue Label Fancy Canned Oysters        ?                    11/01/2010_10025264_162       &cA    Äô√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      ∞§	ABlue Label Fancy Canned Oysters        ?                    11/01/2010_10025264_162       &cA    Äô√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      P§	ABlue Label Fancy Canned Oysters        ?                    11/01/2010_10025264_162       &cA    Äô√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      8§	ABlue Label Fancy Canned Oysters        ?                    11/01/2010_10025264_162       &cA     Xƒ@ 2010-11-21 00:00:00 2010-11-21 00:00:00      P§	ABig Time Frozen Cauliflower        ?                    11/01/2010_10025264_162       ÑcA     Ãƒ@ 2010-11-21 00:00:00 2010-11-21 00:00:00      XT
+ABravo Turkey Noodle Soup        ?                    11/01/2010_10009633_127      `$cA     ï√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      ¯«	ABlue Label Turkey Noodle Soup       ¿r@                    11/01/2010_10015011_142      `$cA     ó√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      ¯«	ABlue Label Canned Tuna in Water       @o@                    11/01/2010_10015011_142      †	cA     ï√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      xG
+ABlue Label Turkey Noodle Soup       pß@                    11/01/2010_10000461_160      ‡wcA     C≈@ 2010-11-20 00:00:00 2010-11-20 00:00:00      HV
+AMonarch Thai Rice        ?                    11/01/2010_10025919_108      ‡wcA    Äƒ@ 2010-11-21 00:00:00 2010-11-21 00:00:00      ËU
+ASuper Vegetable Oil        ?                    11/01/2010_10025919_108       ÑcA    ÄÅƒ@ 2010-11-21 00:00:00 2010-11-21 00:00:00       V
+ATell Tale Mushrooms        ?                    11/01/2010_10009633_127       ¨cA     ï√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      @V
+ABlue Label Turkey Noodle Soup        i@                    11/01/2010_10022240_111      ÄäcA    ÄGƒ@ 2010-11-21 00:00:00 2010-11-21 00:00:00      ‡V
+AMoms Corned Beef        ?                    11/01/2010_10011732_136       $cA     f≈@ 2010-11-21 00:00:00 2010-11-21 00:00:00      W
+AJust Right Canned String Beans        @                    11/01/2010_10025248_145       $cA     ≥√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      W
+AGolden Low Fat French Fries        @                    11/01/2010_10025248_145      ÄäcA     ∑√@ 2010-11-22 00:00:00 2010-11-22 00:00:00      ∞ö	AGolden Apple Cinnamon Waffles        9@                    11/01/2010_10011732_136      ÄäcA     ∑√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      x∂	AGolden Apple Cinnamon Waffles        Y@                    11/01/2010_10011732_136      ÄäcA     ∫√@ 2010-11-21 00:00:00 2010-11-21 00:00:00      x∂	AGolden Grape Popsicles        I@                    11/01/2010_10011732_136      ‡wcA     Xƒ@ 2010-11-20 00:00:00 2010-11-20 00:00:00      HV
+ABig Time Frozen Cauliflower        ?                    11/01/2010_10025919_108      ¿'cA     ∑√@ 2010-11-22 00:00:00 2010-11-22 00:00:00      `ÚAGolden Apple Cinnamon Waffles        ?                    11/01/2010_10006846_117   

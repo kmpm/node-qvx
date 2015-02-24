@@ -10,7 +10,7 @@ Documentation needs to be done but it's still in a quite unstable time
 so please have a look at the tests.
 
 
-Excamples
+Examples
 ---------
 This is sort of a pointless thing to do but it shows a use of Inbound.
 
