@@ -11,7 +11,7 @@ var qvx = require('../');
 
 
 lab.experiment('Inbound', function () {
-  lab.test('read as object', function (done) {
+  lab.test('read as object', {only: true}, function (done) {
 
     var inbound = new qvx.Inbound({recordFormat: 'object'});
     var fileStream = fs.createReadStream(path.join(__dirname, 'fixtures', 'test_expressor.qvx'));
