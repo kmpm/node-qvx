@@ -100,9 +100,7 @@ describe('Inbound', function () {
     .pipe(concat(function (body) {
       expect(body).to.exist();
       // var obj = JSON.parse(body);
-
-      console.log(body);
-
+      //console.log(body);
       var expected = fs.readFileSync(path.join(__dirname, 'fixtures', 'CurrencyExchangeRate.json'), {encoding: 'utf8'});
       expect(body).to.equal(expected);
       fs.writeFileSync(path.join(__dirname, 'tmp', 'inbound.currency.log'), body);
