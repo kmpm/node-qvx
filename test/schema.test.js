@@ -7,7 +7,6 @@ var it = lab.test;
 
 var qvx = require('..');
 var Schema = qvx.Schema;
-var Cursor = require('../lib/extended-cursor');
 
 
 describe('Schema', function () {
@@ -40,68 +39,8 @@ describe('Schema', function () {
     });
   });
 
+
   describe('toQvx', function () {
-    it('should have Double (AddressNumber)', function (done) {
-      var schema = new Schema({
-        AddressNumber: {type: Number}
-      });
-
-      expect(schema.fields[0]).to.be.instanceof(qvx.Schema.Types.Number)
-      .to.include({
-        type: 'Number',
-        wireFormat: 'DoubleLE'
-      });
-
-      var addrSpec = schema.fields[0].toQvxSpec();
-      expect(addrSpec).to.include({
-        FieldName: 'AddressNumber',
-        Type: 'QVX_IEEE_REAL',
-        Extent: 'QVX_FIX',
-        NullRepresentation: 'QVX_NULL_FLAG_SUPPRESS_DATA',
-        BigEndian: false,
-        CodePage: 65001,
-        ByteWidth: 8
-      });
-      done();
-    });
-
-
-    it('should have Int64LE (ItemNumber)', function (done) {
-      var schema = new Schema({
-        ItemNumber: {type: Number, field: 'signed', bytes: 8, decimals: 0}
-      });
-
-      var f = schema.fields[0];
-
-      expect(f).to.include({
-        wireFormat: 'Int64LE'
-      });
-
-      var spec = f.toQvxSpec();
-      expect(spec).to.include({
-        FieldName: 'ItemNumber',
-        Type: 'QVX_SIGNED_INTEGER',
-        Extent: 'QVX_FIX',
-        NullRepresentation: 'QVX_NULL_FLAG_SUPPRESS_DATA',
-        BigEndian: false,
-        CodePage: 65001,
-        ByteWidth: 8,
-        FixPointDecimals: 0
-      });
-
-      var buf = new Buffer([0, 0, 0, 0, 0, 0, 1, 1, 1]);
-      var cursor = new Cursor(buf);
-      var result = f.read(cursor);
-      expect(result).to.equal('72339069014638592');
-      expect(fn).to.throw(Error);
-
-      function fn(){
-        f.read(Date);
-      }
-
-      done();
-    });
-
 
     it('should have Date (InvoiceDate)', function (done) {
       var schema = new Schema({
@@ -223,8 +162,7 @@ describe('Schema', function () {
       });
       done();
     });
-
-  });
+  });//--toQvx
 
 
   describe('fromQvx', function () {
@@ -317,14 +255,6 @@ describe('Schema', function () {
       .to.have.property('type', 'Dual');
 
       expect(f.toQvxSpec()).to.deep.eql(lc);
-
-      var buf = new Buffer([0x06, 0xf9, 0xa0, 0x67, 0xb3, 0xea, 0x73, 0xf1, 0x3f,
-        0x31, 0x2e, 0x30, 0x39, 0x30, 0x38, 0x00]);
-      var cursor = new Cursor(buf);
-      var result = f.read(cursor);
-      expect(result).to.equal(1.0908);
-      var obj = JSON.parse(JSON.stringify(f));
-      expect(obj).to.have.property('type');
       done();
     });
 
