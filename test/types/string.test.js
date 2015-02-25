@@ -12,7 +12,7 @@ var Cursor = require('../../lib/extended-cursor');
 describe('StringType', function () {
 
   it('should do (ItemDesc)', function (done) {
-    var f = new Schema.Types.String('ItemDesc');
+    var f = Schema.Types.String('ItemDesc');
 
     expect(f).to.include({
       wireFormat: 'String'
@@ -37,7 +37,7 @@ describe('StringType', function () {
       extent: 'fix', bytes: 3
     });
 
-    var buf =  new Buffer([0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48]);
+    var buf = new Buffer([0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48]);
     var cursor = new Cursor(buf);
     var result = f.read(cursor);
     expect(result).to.equal('ABC');
@@ -50,7 +50,7 @@ describe('StringType', function () {
       extent: 'fixer', bytes: 3
     });
 
-    var buf =  new Buffer([0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48]);
+    var buf = new Buffer([0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48]);
     var cursor = new Cursor(buf);
     expect(fn).to.throw(Error);
 
@@ -65,7 +65,7 @@ describe('StringType', function () {
   it('should read counted', function (done) {
     var f = new Schema.Types.String('StringTest', {bytes: 1});
 
-    var buf =  new Buffer([0x04, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48]);
+    var buf = new Buffer([0x04, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48]);
     var cursor = new Cursor(buf);
     var result = f.read(cursor);
     expect(result).to.equal('ABCD');
@@ -75,7 +75,7 @@ describe('StringType', function () {
   it('should read zero', function (done) {
     var f = new Schema.Types.String('StringTest', {bytes: 1, extent: 'zero'});
 
-    var buf =  new Buffer([0x41, 0x42, 0x00, 0x44, 0x45, 0x46, 0x47, 0x48]);
+    var buf = new Buffer([0x41, 0x42, 0x00, 0x44, 0x45, 0x46, 0x47, 0x48]);
     var cursor = new Cursor(buf);
     var result = f.read(cursor);
     expect(result).to.equal('AB');
@@ -94,7 +94,7 @@ describe('StringType', function () {
     var cursor = new Cursor(buf);
     f.write(cursor, 'ABCDEFGH');
 
-    expect(cursor.tell(), 'bad length written').to.equal(expected.length);
+    expect(cursor.tell(), 'bad length written').to.equal(8);
 
     buf = cursor.buffer.slice(0, cursor.tell());
     expect(buf).to.eql(expected);

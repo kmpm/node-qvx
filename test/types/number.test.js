@@ -14,7 +14,7 @@ describe('NumberType', function () {
   describe('DoubleLE', function () {
 
     it('DoubleLE should do (AddressNumber)', function (done) {
-      var f = new Schema.Types.Number('AddressNumber', {});
+      var f = Schema.Types.Number('AddressNumber', {});
 
       expect(f).to.be.instanceof(qvx.Schema.Types.Number)
       .to.include({

@@ -1,11 +1,15 @@
+/*eslint no-unused-expressions: 1 */
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
-var expect = require('code').expect;
+var expect = require('chai').expect;
 var describe = lab.experiment;
 var it = lab.test;
 
 var fs = require('fs');
 var path = require('path');
+var glob = require('glob');
+var es = require('event-stream');
+
 var concat = require('concat-stream');
 var JSONStream = require('JSONStream');
 
@@ -26,7 +30,6 @@ describe('Inbound', function () {
     .pipe(inbound)
     .pipe(stringify)
     .pipe(concat(function (body) {
-      expect(body).to.exist();
       expect(headerCount).to.equal(1);
       expect(lineCount).to.be.above(0);
       var objs = body.split('\n');
@@ -35,19 +38,17 @@ describe('Inbound', function () {
 
       var obj = JSON.parse(objs[0]);
       expect(obj).to.be.instanceof(Object);
-      expect(obj).to.include(['AddressNumber', 'ItemNumber']);
+      expect(obj).to.have.include.keys('AddressNumber', 'ItemNumber');
       expect(Object.keys(obj)).to.have.length(19);
       fs.writeFileSync(path.join(__dirname, 'tmp', 'inbound.hash.log'), body);
       done();
     }));
 
     inbound.on('line', function (line) {
-      expect(line).to.exist();
       lineCount++;
     });
 
     inbound.on('schema', function (schema) {
-      expect(schema).to.exist();
       expect(schema).to.be.instanceof(qvx.Schema);
       headerCount++;
     });
@@ -67,7 +68,7 @@ describe('Inbound', function () {
     .pipe(inbound)
     .pipe(stringify)
     .pipe(concat(function (body) {
-      expect(body).to.exist();
+      expect(body).to.exist;
       expect(lineCount).to.be.above(0);
       fs.writeFileSync(path.join(__dirname, 'tmp', 'inbound.array.log'), body);
       var objs = body.split('\n');
@@ -81,7 +82,7 @@ describe('Inbound', function () {
     }));
 
     inbound.on('line', function (line) {
-      expect(line).to.exist();
+      expect(line).to.exist;
       lineCount++;
     });
 
@@ -98,7 +99,7 @@ describe('Inbound', function () {
     fileStream.pipe(inbound)
     .pipe(stringify)
     .pipe(concat(function (body) {
-      expect(body).to.exist();
+      expect(body).to.exist;
       // var obj = JSON.parse(body);
       //console.log(body);
       var expected = fs.readFileSync(path.join(__dirname, 'fixtures', 'CurrencyExchangeRate.json'), {encoding: 'utf8'});
@@ -117,7 +118,7 @@ describe('Inbound', function () {
     fileStream.pipe(inbound)
     .pipe(stringify)
     .pipe(concat(function (body) {
-      expect(body).to.exist();
+      expect(body).to.exist;
       var expected = fs.readFileSync(
         path.join(__dirname, 'fixtures', 'expressor_single_hash.json'), {encoding: 'utf8'}
       );
@@ -126,4 +127,26 @@ describe('Inbound', function () {
       done();
     }));
   });//--import qv11
+
+  describe('private inbound', {only: true}, function () {
+    glob.sync('./private/*.qvx').forEach(testInbound);
+  });
 });
+
+function testInbound(filename) {
+  it('inbound ' + filename, function (done) {
+    var inbound = new qvx.Inbound({recordFormat: 'object'});
+    var fileIn = fs.createReadStream(filename);
+    var fileOut = fs.createWriteStream(path.join(__dirname, 'tmp', 'private.' + path.basename(filename) + '.json'));
+    fileIn.pipe(inbound)
+    .pipe(es.map(function (data, cb) {
+      //console.log(data);
+      expect(data).to.be.an('object');
+      cb(null, data);
+    }))
+    .pipe(es.stringify())
+    .pipe(fileOut);
+
+    fileOut.on('close', done);
+  });//..it Inbound
+}//--testInbound

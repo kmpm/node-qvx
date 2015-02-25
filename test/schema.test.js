@@ -11,33 +11,8 @@ var Schema = qvx.Schema;
 
 describe('Schema', function () {
 
-  describe('from json spec', function () {
-    it('should create type:"Date"', function (done) {
-      var schema = new Schema({
-        InvoiceDate: {type: 'Date'}
-      });
 
-      expect(schema.fields[0])
-      .to.be.instanceof(qvx.Schema.Types.Date)
-      .to.include({
-        name: 'InvoiceDate',
-        field: 'text',
-        bytes: 1,
-        endian: 'little',
-        extent: 'counted',
-        whenNull: 'supress',
-        encoding: 'utf-8',
-        wireFormat: 'String'
-      })
-      .to.have.property('format')
-      .to.include({
-        type: 'TIMESTAMP',
-        fmt: 'YYYY-MM-DD HH:mm:ss'
-      });
-      // console.log(schema.fields.InvoiceDate);
-      done();
-    });
-  });
+
 
 
   describe('toQvx', function () {

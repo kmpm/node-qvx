@@ -61,8 +61,9 @@ describe('DualType', function () {
 
   it('should read string', function (done) {
 
-    var f = new Schema.Types.Dual('DualTest', {
-      field: 'dual', extent: 'special'
+    var f = Schema.Types.Dual('DualTest', {
+      bytes: 1,
+      field: 'dual', extent: 'special', format: {thouSep: ' '}
     });
 
     var buf = new Buffer([0x04, 0x31, 0x2e, 0x30, 0x39, 0x30, 0x38, 0x00]);
@@ -75,6 +76,19 @@ describe('DualType', function () {
     done();
   });
 
+
+  it('should read double', function (done) {
+
+    var f = new Schema.Types.Dual('DualTest', {
+      field: 'dual', extent: 'special'
+    });
+
+    var buf = new Buffer([0x02,  0xf9, 0xa0, 0x67, 0xb3, 0xea, 0x73, 0xf1, 0x3f]);
+    var cursor = new Cursor(buf);
+    var result = f.read(cursor);
+    expect(result).to.equal(1.0908);
+    done();
+  });
 
   it('should read double and string', function (done) {
 
