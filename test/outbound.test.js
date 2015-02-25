@@ -24,7 +24,7 @@ describe('Outbound', function () {
   });
 
 
-  it('should transform', {only: true}, function (done) {
+  it('should transform', function (done) {
     var fields = {
       'AddressNumber': {type: Number},
       'ItemNumber': {type: Number, field: 'signed', bytes: 8, decimals: 0},
