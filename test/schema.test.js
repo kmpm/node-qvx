@@ -70,30 +70,6 @@ describe('Schema', function () {
     });
 
 
-    it('should have string (ItemDesc)', function (done) {
-      var schema = new Schema({
-        ItemDesc: {type: String}
-      });
-
-      expect(schema.fields[0]).to.include({
-        wireFormat: 'String'
-      });
-
-      var spec = schema.fields[0].toQvxSpec();
-      expect(spec).to.include({
-        FieldName: 'ItemDesc',
-        Type: 'QVX_TEXT',
-        Extent: 'QVX_COUNTED',
-        NullRepresentation: 'QVX_NULL_FLAG_SUPPRESS_DATA',
-        BigEndian: false,
-        CodePage: 65001,
-        ByteWidth: 4
-      })
-      .to.not.have.property('FixPointDecimals');
-      done();
-    });
-
-
     it('should have bcd (Margin)', function (done) {
       var schema = new Schema({
         Margin: {type: Number, field: 'bcd', bytes: 18, decimals: 4, extent: 'fix'}
