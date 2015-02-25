@@ -7,6 +7,7 @@ var it = lab.test;
 
 var qvx = require('..');
 var Schema = qvx.Schema;
+var Cursor = require('../lib/extended-cursor');
 
 
 describe('Schema', function () {
@@ -70,11 +71,13 @@ describe('Schema', function () {
         ItemNumber: {type: Number, field: 'signed', bytes: 8, decimals: 0}
       });
 
-      expect(schema.fields[0]).to.include({
+      var f = schema.fields[0];
+
+      expect(f).to.include({
         wireFormat: 'Int64LE'
       });
 
-      var spec = schema.fields[0].toQvxSpec();
+      var spec = f.toQvxSpec();
       expect(spec).to.include({
         FieldName: 'ItemNumber',
         Type: 'QVX_SIGNED_INTEGER',
@@ -85,6 +88,17 @@ describe('Schema', function () {
         ByteWidth: 8,
         FixPointDecimals: 0
       });
+
+      var buf = new Buffer([0, 0, 0, 0, 0, 0, 1, 1, 1]);
+      var cursor = new Cursor(buf);
+      var result = f.read(cursor);
+      expect(result).to.equal('72339069014638592');
+      expect(fn).to.throw(Error);
+
+      function fn(){
+        f.read(Date);
+      }
+
       done();
     });
 
