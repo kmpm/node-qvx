@@ -163,7 +163,57 @@ describe('Schema', function () {
       });
       done();
     });
+
+    it('should have Int64BE', function (done) {
+      var schema = new Schema({
+        ItemNumber: {type: Number, field: 'signed', bytes: 8, decimals: 0, endian: 'big'}
+      });
+
+      expect(schema.fields[0]).to.have.property('wireFormat', 'Int64BE');
+
+      var spec = schema.fields[0].toQvxSpec();
+      expect(spec).to.include({
+        FieldName: 'ItemNumber',
+        Type: 'QVX_SIGNED_INTEGER',
+        Extent: 'QVX_FIX',
+        NullRepresentation: 'QVX_NULL_FLAG_SUPPRESS_DATA',
+        BigEndian: true,
+        CodePage: 65000,
+        ByteWidth: 8,
+        FixPointDecimals: 0
+      });
+      done();
+    });
+
+
+    it('should have Float', function (done) {
+      var schema = new Schema({
+        AddressNumber: {type: Number, bytes: 4, endian: 'big'}
+      });
+
+      expect(schema.fields[0]).to.be.instanceof(qvx.Schema.Types.Number)
+      .to.include({
+        type: 'Number',
+        wireFormat: 'FloatBE'
+      });
+
+      var addrSpec = schema.fields[0].toQvxSpec();
+      expect(addrSpec).to.include({
+        FieldName: 'AddressNumber',
+        Type: 'QVX_IEEE_REAL',
+        Extent: 'QVX_FIX',
+        NullRepresentation: 'QVX_NULL_FLAG_SUPPRESS_DATA',
+        BigEndian: true,
+        CodePage: 65000,
+        ByteWidth: 4
+      });
+      done();
+    });
+
   });
+
+
+
 
   describe('fromQvx', function () {
 
