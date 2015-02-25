@@ -227,8 +227,6 @@ describe('Schema', function () {
   });
 
 
-
-
   describe('fromQvx', function () {
 
     it('should suppor test_expressor', function (done) {
@@ -313,7 +311,20 @@ describe('Schema', function () {
       });
 
       expect(schema.fields).to.have.length(1);
-      expect(schema.fields[0].toQvxSpec()).to.deep.eql(lc);
+      var f = schema.fields[0];
+
+      expect(f).to.be.instanceof(Schema.Types.Dual)
+      .to.have.property('type', 'Dual');
+
+      expect(f.toQvxSpec()).to.deep.eql(lc);
+
+      var buf = new Buffer([0x06, 0xf9, 0xa0, 0x67, 0xb3, 0xea, 0x73, 0xf1, 0x3f,
+        0x31, 0x2e, 0x30, 0x39, 0x30, 0x38, 0x00]);
+      var cursor = new Cursor(buf);
+      var result = f.read(cursor);
+      expect(result).to.equal(1.0908);
+      var obj = JSON.parse(JSON.stringify(f));
+      expect(obj).to.have.property('type');
       done();
     });
 
