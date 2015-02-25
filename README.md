@@ -11,6 +11,13 @@ so please have a look at the tests.
 
 Have a look at https://github.com/kmpm/node-qvxserver for a Hapi based webserver that will give you qvx data.
 
+Installation
+------------
+
+    npm install
+
+There is a dependency on a module called bignum that uses some native SSL libraries
+for handling 64 bit integers. This dependency might be tricky to install in windows.
 
 Examples
 ---------
@@ -38,8 +45,10 @@ fileStream
 ```
 
 There is currently also a cli that is really quick and dirty.
+It just takes a qvx as input and outputs the records as arrays.
+
 ```bash
-qvxcat test\fixtures\test_expressor.qvx
+qvxcat test/fixtures/test_expressor.qvx
 
 ```
 This will just print the records as JSON arrays.

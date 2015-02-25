@@ -12,7 +12,6 @@ var es = require('event-stream');
 var concat = require('concat-stream');
 
 var qvx = require('../');
-var DataTypes = qvx.DataTypes;
 
 
 describe('Outbound', function () {

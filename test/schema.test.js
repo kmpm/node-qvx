@@ -5,16 +5,8 @@ var describe = lab.experiment;
 var it = lab.test;
 
 
-var fs = require('fs');
-var path = require('path');
-var ExtendedCursor = require('../lib/extended-cursor');
-
 var qvx = require('..');
 var Schema = qvx.Schema;
-var DataTypes = qvx.DataTypes;
-
-
-var EXPRESSOR_BIN_FILE = path.join(__dirname, 'fixtures', 'test_expressor.bin');
 
 
 describe('Schema', function () {
@@ -26,7 +18,7 @@ describe('Schema', function () {
       });
 
       expect(schema.fields[0])
-      .to.be.instanceof(qvx.DataTypes.Date)
+      .to.be.instanceof(qvx.Schema.Types.Date)
       .to.include({
         name: 'InvoiceDate',
         field: 'text',
@@ -53,7 +45,7 @@ describe('Schema', function () {
         AddressNumber: {type: Number}
       });
 
-      expect(schema.fields[0]).to.be.instanceof(qvx.DataTypes.Number)
+      expect(schema.fields[0]).to.be.instanceof(qvx.Schema.Types.Number)
       .to.include({
         type: 'Number',
         wireFormat: 'DoubleLE'
@@ -75,7 +67,7 @@ describe('Schema', function () {
 
     it('should have Int64LE (ItemNumber)', function (done) {
       var schema = new Schema({
-        ItemNumber: {type: Number, field: 'signed', bytes: 8, decimals: 0},
+        ItemNumber: {type: Number, field: 'signed', bytes: 8, decimals: 0}
       });
 
       expect(schema.fields[0]).to.include({
@@ -99,7 +91,7 @@ describe('Schema', function () {
 
     it('should have Date (InvoiceDate)', function (done) {
       var schema = new Schema({
-        InvoiceDate: {type: Date},
+        InvoiceDate: {type: Date}
       });
 
       expect(schema.fields[0]).to.include({
@@ -123,7 +115,6 @@ describe('Schema', function () {
       .to.not.have.keys('nDec', 'Dec', 'Thou', 'UseThou');
       done();
     });
-
 
 
     it('should have string (ItemDesc)', function (done) {
@@ -204,7 +195,7 @@ describe('Schema', function () {
         encoding: 'utf-8'
       });
 
-      expect(itemDesc).to.be.instanceof(qvx.DataTypes.String);
+      expect(itemDesc).to.be.instanceof(qvx.Schema.Types.String);
       expect(itemDesc).to.have.property('type', 'String');
 
 
@@ -216,7 +207,7 @@ describe('Schema', function () {
         endian: 'little',
         extent: 'counted',
         whenNull: 'supress',
-        encoding: 'utf-8',
+        encoding: 'utf-8'
       })
       .to.have.property('format')
       .to.include({
