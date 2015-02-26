@@ -156,4 +156,53 @@ describe('StringType', function () {
     done();
   });
 
+
+  it('should zero fill on long fixed string', function (done) {
+    var expected = new Buffer([0x41, 0x42, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+
+    var f = new Schema.Types.String('StringTest', {extent: 'fix', bytes: 10});
+
+    var buf = new Buffer(30);
+    var cursor = new Cursor(buf);
+    f.write(cursor, 'AB');
+
+    expect(cursor.tell(), 'bad length written').to.equal(expected.length);
+
+    buf = cursor.buffer.slice(0, cursor.tell());
+    expect(buf).to.eql(expected);
+
+    done();
+  });
+
+
+  it('should throw on to big fix string', function (done) {
+
+    var f = new Schema.Types.String('StringTest', {extent: 'fix', bytes: 3});
+
+    var buf = new Buffer(30);
+    var cursor = new Cursor(buf);
+
+    expect(fn).to.throw(Error)
+    function fn() {
+      f.write(cursor, 'ABCD');
+    }
+    done();
+  });
+
+
+  it('should write object with toString', function (done) {
+
+    var f = new Schema.Types.String('StringTest', {extent: 'fix', bytes: 30});
+
+    var buf = new Buffer(30);
+    var cursor = new Cursor(buf);
+    f.write(cursor, new Schema.Types.String('asdf'));
+
+    cursor.seek(0);
+    var result = cursor.readZeroString();
+    expect(result).to.equal('[object Object]');
+
+    done();
+  });
+
 });

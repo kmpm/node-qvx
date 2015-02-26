@@ -4,6 +4,8 @@ var expect = require('chai').expect;
 var describe = lab.experiment;
 var it = lab.test;
 
+var fs = require('fs');
+var path = require('path');
 
 var qvx = require('..');
 var Schema = qvx.Schema;
@@ -11,106 +13,105 @@ var Schema = qvx.Schema;
 
 describe('Schema', function () {
 
+  it('should include creator', function (done) {
+    var schema = new Schema({}, {creator: true});
+    var spec = schema.toQvxSpec();
+    expect(spec).to.have.property('Creator');
+    done();
+  });
+
+  it('should throw on adding a field with bad type', function (done) {
+    var schema = new Schema({}, {creator: true});
+    var spec = schema.toQvxSpec();
+
+    expect(fn).to.throw(TypeError, 'Undefined type `Monkey` at `Testing`');
+    function fn() {
+      schema.add({Testing: {type: 'monkey'}});
+    }
+    done();
+  });
+
+  it('should add with native type', function (done) {
+    var schema = new Schema({}, {creator: true});
+    var spec = schema.toQvxSpec();
+    schema.add({Testing: {type: String}});
+    expect(schema.fields).to.have.length(1);
+    done();
+  });
+
+  it('should add with direct type', function (done) {
+    var schema = new Schema({}, {creator: true});
+    var spec = schema.toQvxSpec();
+    schema.add({Testing: String});
+    expect(schema.fields).to.have.length(1);
+    done();
+  });
 
 
+
+  describe('Types', function () {
+    it('should throw on bad field in toQvxSpec', function (done) {
+      var f = new Schema.Types.String('Testname', {});
+      f.field = 'asdf'
+      expect(f.field).to.equal('asdf');
+      expect(fn).to.throw(TypeError);
+
+      function fn() {
+        f.toQvxSpec();
+      }
+      done();
+    });
+
+    it('should encode utf-16', function (done) {
+      var f = new Schema.Types.String('Testname', {encoding: 'utf-16'});
+      var spec = f.toQvxSpec();
+      expect(spec).to.have.property('CodePage', 12001);
+      done();
+    });
+
+    it('should exclude format.fmt if undefined', function (done) {
+      var f = new Schema.Types.String('Testname', {format:{}});
+      var spec = f.toQvxSpec();
+      expect(spec).to.have.property('FieldFormat')
+      .to.not.have.property('Fmt');
+      done();
+    });
+  });//-types
 
 
   describe('toQvx', function () {
 
-    it('should have Date (InvoiceDate)', function (done) {
-      var schema = new Schema({
-        InvoiceDate: {type: Date}
+    it('should do without opts', function (done) {
+      var fields = {
+        'AddressNumber': {type: Number},
+        'ItemNumber': {type: Number, field: 'signed', bytes: 8, decimals: 0}
+      };
+
+      var schema = new qvx.Schema(fields, {
+        createdAt: '2012-03-06 19:22:15',
+        creator: false,
+        tableName: 'test'
       });
 
-      expect(schema.fields[0]).to.include({
-        wireFormat: 'String'
-      });
-
-      var spec = schema.fields[0].toQvxSpec();
-      expect(spec).to.include({
-        FieldName: 'InvoiceDate',
-        Type: 'QVX_TEXT',
-        Extent: 'QVX_COUNTED',
-        NullRepresentation: 'QVX_NULL_FLAG_SUPPRESS_DATA',
-        BigEndian: false,
-        CodePage: 65001,
-        ByteWidth: 1
-      });
-      expect(spec.FieldFormat).to.include({
-        Type: 'TIMESTAMP',
-        Fmt: 'YYYY-MM-DD hh:mm:ss'
-      })
-      .to.not.have.keys('nDec', 'Dec', 'Thou', 'UseThou');
+      var x = schema.toQvx();
+      expect(x).to.equal(fs.readFileSync(path.join(__dirname, 'fixtures', 'short.schema.xml'), 'utf-8'));
       done();
     });
 
 
-    it('should have bcd (Margin)', function (done) {
-      var schema = new Schema({
-        Margin: {type: Number, field: 'bcd', bytes: 18, decimals: 4, extent: 'fix'}
+    it('should do pretty schema', function (done) {
+      var fields = {
+        'AddressNumber': {type: Number},
+        'ItemNumber': {type: Number, field: 'signed', bytes: 8, decimals: 0}
+      };
+
+      var schema = new qvx.Schema(fields, {
+        createdAt: '2012-03-06 19:22:15',
+        creator: false
       });
 
-      expect(schema.fields[0]).to.include({
-        wireFormat: 'Bcd'
-      });
-
-      var spec = schema.fields[0].toQvxSpec();
-      expect(spec).to.include({
-        FieldName: 'Margin',
-        Type: 'QVX_PACKED_BCD',
-        Extent: 'QVX_FIX',
-        NullRepresentation: 'QVX_NULL_FLAG_SUPPRESS_DATA',
-        BigEndian: false,
-        CodePage: 65001,
-        ByteWidth: 18,
-        FixPointDecimals: 4
-      });
-      done();
-    });
-
-    it('should have Int64BE', function (done) {
-      var schema = new Schema({
-        ItemNumber: {type: Number, field: 'signed', bytes: 8, decimals: 0, endian: 'big'}
-      });
-
-      expect(schema.fields[0]).to.have.property('wireFormat', 'Int64BE');
-
-      var spec = schema.fields[0].toQvxSpec();
-      expect(spec).to.include({
-        FieldName: 'ItemNumber',
-        Type: 'QVX_SIGNED_INTEGER',
-        Extent: 'QVX_FIX',
-        NullRepresentation: 'QVX_NULL_FLAG_SUPPRESS_DATA',
-        BigEndian: true,
-        CodePage: 65000,
-        ByteWidth: 8,
-        FixPointDecimals: 0
-      });
-      done();
-    });
-
-
-    it('should have Float', function (done) {
-      var schema = new Schema({
-        AddressNumber: {type: Number, bytes: 4, endian: 'big'}
-      });
-
-      expect(schema.fields[0]).to.be.instanceof(qvx.Schema.Types.Number)
-      .to.include({
-        type: 'Number',
-        wireFormat: 'FloatBE'
-      });
-
-      var addrSpec = schema.fields[0].toQvxSpec();
-      expect(addrSpec).to.include({
-        FieldName: 'AddressNumber',
-        Type: 'QVX_IEEE_REAL',
-        Extent: 'QVX_FIX',
-        NullRepresentation: 'QVX_NULL_FLAG_SUPPRESS_DATA',
-        BigEndian: true,
-        CodePage: 65000,
-        ByteWidth: 4
-      });
+      var x = schema.toQvx({pretty: true});
+      expect(x).to.equal(fs.readFileSync(path.join(__dirname, 'fixtures', 'short.pretty.schema.xml'), 'utf-8'));
       done();
     });
   });//--toQvx
@@ -168,44 +169,6 @@ describe('Schema', function () {
 
       expect(schema.fields).to.have.length(19);
       //console.log('asdf %j', schema);
-      done();
-    });
-
-    it('DUAL', function (done) {
-      var lc = {
-        FieldName: 'LocalCurrency',
-        Type: 'QVX_QV_DUAL',
-        Extent: 'QVX_QV_SPECIAL',
-        NullRepresentation: 'QVX_NULL_NEVER',
-        BigEndian: false,
-        CodePage: 65001,
-        ByteWidth: 0,
-        FixPointDecimals: 0,
-        FieldFormat: {
-          Type: 'UNKNOWN',
-          Fmt: '',
-          nDec: 0,
-          UseThou: 0,
-          Dec: '',
-          Thou: ''
-        }
-      };
-
-      var schema = Schema.fromQvx({
-        QvxTableHeader: {
-          Fields: {
-            QvxFieldHeader: [lc]
-          }
-        }
-      });
-
-      expect(schema.fields).to.have.length(1);
-      var f = schema.fields[0];
-
-      expect(f).to.be.instanceof(Schema.Types.Dual)
-      .to.have.property('type', 'Dual');
-
-      expect(f.toQvxSpec()).to.deep.eql(lc);
       done();
     });
 

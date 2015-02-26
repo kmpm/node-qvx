@@ -22,8 +22,25 @@ describe('Number.Bcd', function () {
     });
 
     expect(f).to.be.instanceof(Schema.Types.Number);
+
+    var spec = f.toQvxSpec();
+    expect(spec).to.include({
+      FieldName: 'Margin',
+      Type: 'QVX_PACKED_BCD',
+      Extent: 'QVX_FIX',
+      NullRepresentation: 'QVX_NULL_FLAG_SUPPRESS_DATA',
+      BigEndian: false,
+      CodePage: 65001,
+      ByteWidth: 18,
+      FixPointDecimals: 4
+    });
+
     done();
   });
+
+
+
+
 
   it('should read with decimals', function (done) {
     var buf = new Buffer([0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x10, 0x10, 0x10]);

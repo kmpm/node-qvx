@@ -9,11 +9,12 @@ var qvx = require('../../');
 var Schema = qvx.Schema;
 var Cursor = require('../../lib/extended-cursor');
 
-function cursorWithDate() {
+function cursorWithDate(datestring) {
+
   var buf = new Buffer(30);
   var cursor = new Cursor(buf);
 
-  var ds = '2010-12-12 11:12:13';
+  var ds = typeof datestring === 'undefined' ? '2010-12-12 11:12:13' : datestring;
 
   cursor.writeUInt8(ds.length);
   cursor.writeString(ds, ds.length, 'utf-8');
@@ -23,7 +24,7 @@ function cursorWithDate() {
 
 describe('DateType', function () {
   it('should do', function (done) {
-    var f = new Schema.Types.Date('InvoiceDate', {type: 'Date'});
+    var f = new Schema.Types.Date('InvoiceDate');
 
     expect(f)
     .to.be.instanceof(qvx.Schema.Types.Date)
@@ -41,7 +42,8 @@ describe('DateType', function () {
     .to.include({
       type: 'TIMESTAMP',
       fmt: 'YYYY-MM-DD HH:mm:ss'
-    });
+    })
+    .to.not.have.keys('nDec', 'Dec', 'Thou', 'UseThou');
     // console.log(schema.fields.InvoiceDate);
     done();
   });
@@ -52,6 +54,32 @@ describe('DateType', function () {
     var cursor = cursorWithDate();
     var result = f.read(cursor);
     expect(result).to.be.instanceof(Date);
+    done();
+  });
+
+
+  it('should read without format', function (done) {
+    var f = Schema.Types.Date('InvoiceDate', {type: 'Date', format:{fmt: ''}});
+    var cursor = cursorWithDate();
+    var result = f.read(cursor);
+    expect(result).to.be.instanceof(Date);
+    done();
+  });
+
+
+  it('should read empty string as null', function (done) {
+    var f = Schema.Types.Date('InvoiceDate');
+    var cursor = cursorWithDate('');
+    var result = f.read(cursor);
+    expect(result).to.equal(null);
+    done();
+  });
+
+  it('should read short string as null', function (done) {
+    var f = Schema.Types.Date('InvoiceDate');
+    var cursor = cursorWithDate('2015');
+    var result = f.read(cursor);
+    expect(result).to.equal(null);
     done();
   });
 

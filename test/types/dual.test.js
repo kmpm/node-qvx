@@ -143,12 +143,49 @@ describe('DualType', function () {
     done();
   });
 
+  it('should write BE decimal double', function (done) {
+    var f = new Schema.Types.Dual('DualTest', {
+      field: 'dual', extent: 'special', endian: 'big'
+    });
+
+    var buf = new Buffer(30);
+    var cursor = new Cursor(buf);
+    f.write(cursor, 1.0908);
+
+    expect(cursor.tell(), 'bad length written').to.equal(9);
+    buf = cursor.buffer.slice(0, cursor.tell());
+    var expected = new Buffer([0x02,  0x3f, 0xf1, 0x73, 0xea, 0xb3, 0x67, 0xa0,  0xf9]);
+    expect(buf).to.eql(expected);
+    done();
+  });
+
   it('should write decimal string as double and string', function (done) {
     var expected = new Buffer([0x06, 0xf9, 0xa0, 0x67, 0xb3, 0xea, 0x73, 0xf1, 0x3f,
       0x31, 0x2e, 0x30, 0x39, 0x30, 0x38, 0x00]);
 
     var f = new Schema.Types.Dual('DualTest', {
       field: 'dual', extent: 'special'
+    });
+
+    var buf = new Buffer(30);
+    var cursor = new Cursor(buf);
+    f.write(cursor, '1.0908');
+
+    expect(cursor.tell(), 'bad length written').to.equal(expected.length);
+
+    buf = cursor.buffer.slice(0, cursor.tell());
+    expect(buf).to.eql(expected);
+
+    done();
+  });
+
+
+  it('should write decimal string as BE double and string', function (done) {
+    var expected = new Buffer([0x06, 0x3f, 0xf1, 0x73, 0xea, 0xb3, 0x67, 0xa0, 0xf9,
+      0x31, 0x2e, 0x30, 0x39, 0x30, 0x38, 0x00]);
+
+    var f = new Schema.Types.Dual('DualTest', {
+      field: 'dual', extent: 'special', endian: 'big'
     });
 
     var buf = new Buffer(30);
@@ -180,6 +217,35 @@ describe('DualType', function () {
     buf = cursor.buffer.slice(0, cursor.tell());
     expect(buf).to.eql(expected);
 
+    done();
+  });
+
+  it('should throw on INT', function (done) {
+    var f = new Schema.Types.Dual('DualTest', {
+      field: 'dual', extent: 'special'
+    });
+
+    var buf = new Buffer(30);
+    var cursor = new Cursor(buf);
+    expect(fn).to.throw(Error, 'No int yet');
+    function fn() {
+      f.write(cursor, 10);
+    }
+    done();
+  });
+
+
+  it('should throw on undefined value', function (done) {
+    var f = new Schema.Types.Dual('DualTest', {
+      field: 'dual', extent: 'special'
+    });
+    var v;
+    var buf = new Buffer(30);
+    var cursor = new Cursor(buf);
+    expect(fn).to.throw(TypeError, 'No value to write');
+    function fn() {
+      f.write(cursor, v);
+    }
     done();
   });
 

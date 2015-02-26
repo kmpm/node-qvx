@@ -37,6 +37,32 @@ describe('NumberType', function () {
   });//--DoubleLE
 
 
+  describe('Float', function () {
+
+    it('should have FloatBE', function (done) {
+      var f = Schema.Types.Number('AddressNumber', {bytes: 4, endian: 'big'});
+
+      expect(f).to.be.instanceof(Schema.Types.Number)
+      .to.include({
+        type: 'Number',
+        wireFormat: 'FloatBE'
+      });
+
+      var addrSpec = f.toQvxSpec();
+      expect(addrSpec).to.include({
+        FieldName: 'AddressNumber',
+        Type: 'QVX_IEEE_REAL',
+        Extent: 'QVX_FIX',
+        NullRepresentation: 'QVX_NULL_FLAG_SUPPRESS_DATA',
+        BigEndian: true,
+        CodePage: 65000,
+        ByteWidth: 4
+      });
+      done();
+    });
+  });//--float
+
+
   describe('Int64BE', function () {
     it('should do (ItemNumber)', function (done) {
       var f = new Schema.Types.Number('ItemNumber', {field: 'signed', bytes: 8, decimals: 0, endian: 'big'});
