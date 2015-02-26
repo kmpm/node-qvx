@@ -70,4 +70,21 @@ describe('Number.Bcd', function () {
 
     done();
   });
+
+
+  it('should write without decimals', function (done) {
+    var buf = new Buffer(30);
+    var cursor = new Cursor(buf);
+
+    var f = new Schema.Types.Number('Margin', {
+        field: 'bcd', bytes: 18, decimals: 0, extent: 'fix'
+    });
+
+    var result = f.write(cursor, 12345678);
+    var expected = new Buffer([0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]);
+    buf = buf.slice(0, cursor.tell());
+
+    expect(buf).to.eql(expected);
+    done();
+  });
 });
