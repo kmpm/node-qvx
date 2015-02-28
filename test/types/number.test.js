@@ -1,3 +1,4 @@
+/*eslint new-cap: 0 */
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;

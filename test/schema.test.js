@@ -22,7 +22,7 @@ describe('Schema', function () {
 
   it('should throw on adding a field with bad type', function (done) {
     var schema = new Schema({}, {creator: true});
-    var spec = schema.toQvxSpec();
+    schema.toQvxSpec();
 
     expect(fn).to.throw(TypeError, 'Undefined type `Monkey` at `Testing`');
     function fn() {
@@ -33,7 +33,7 @@ describe('Schema', function () {
 
   it('should add with native type', function (done) {
     var schema = new Schema({}, {creator: true});
-    var spec = schema.toQvxSpec();
+    schema.toQvxSpec();
     schema.add({Testing: {type: String}});
     expect(schema.fields).to.have.length(1);
     done();
@@ -41,18 +41,17 @@ describe('Schema', function () {
 
   it('should add with direct type', function (done) {
     var schema = new Schema({}, {creator: true});
-    var spec = schema.toQvxSpec();
+    schema.toQvxSpec();
     schema.add({Testing: String});
     expect(schema.fields).to.have.length(1);
     done();
   });
 
 
-
   describe('Types', function () {
     it('should throw on bad field in toQvxSpec', function (done) {
       var f = new Schema.Types.String('Testname', {});
-      f.field = 'asdf'
+      f.field = 'asdf';
       expect(f.field).to.equal('asdf');
       expect(fn).to.throw(TypeError);
 
@@ -70,7 +69,7 @@ describe('Schema', function () {
     });
 
     it('should exclude format.fmt if undefined', function (done) {
-      var f = new Schema.Types.String('Testname', {format:{}});
+      var f = new Schema.Types.String('Testname', {format: {}});
       var spec = f.toQvxSpec();
       expect(spec).to.have.property('FieldFormat')
       .to.not.have.property('Fmt');

@@ -1,4 +1,4 @@
-/*eslint no-unused-expressions: 1 */
+/*eslint no-unused-expressions: 0 */
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
@@ -44,7 +44,7 @@ describe('Inbound', function () {
       done();
     }));
 
-    inbound.on('line', function (line) {
+    inbound.on('line', function () {
       lineCount++;
     });
 

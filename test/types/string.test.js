@@ -1,3 +1,4 @@
+/*eslint new-cap: 0 */
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
@@ -182,7 +183,7 @@ describe('StringType', function () {
     var buf = new Buffer(30);
     var cursor = new Cursor(buf);
 
-    expect(fn).to.throw(Error)
+    expect(fn).to.throw(Error);
     function fn() {
       f.write(cursor, 'ABCD');
     }

@@ -1,3 +1,4 @@
+/*eslint new-cap: 0 */
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
@@ -83,7 +84,7 @@ describe('DualType', function () {
       field: 'dual', extent: 'special'
     });
 
-    var buf = new Buffer([0x02,  0xf9, 0xa0, 0x67, 0xb3, 0xea, 0x73, 0xf1, 0x3f]);
+    var buf = new Buffer([0x02, 0xf9, 0xa0, 0x67, 0xb3, 0xea, 0x73, 0xf1, 0x3f]);
     var cursor = new Cursor(buf);
     var result = f.read(cursor);
     expect(result).to.equal(1.0908);
@@ -154,7 +155,7 @@ describe('DualType', function () {
 
     expect(cursor.tell(), 'bad length written').to.equal(9);
     buf = cursor.buffer.slice(0, cursor.tell());
-    var expected = new Buffer([0x02,  0x3f, 0xf1, 0x73, 0xea, 0xb3, 0x67, 0xa0,  0xf9]);
+    var expected = new Buffer([0x02, 0x3f, 0xf1, 0x73, 0xea, 0xb3, 0x67, 0xa0, 0xf9]);
     expect(buf).to.eql(expected);
     done();
   });

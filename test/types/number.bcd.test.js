@@ -1,3 +1,4 @@
+/*eslint new-cap: 0 */
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
@@ -8,7 +9,7 @@ var qvx = require('../../');
 var Schema = qvx.Schema;
 var Cursor = require('../../lib/extended-cursor');
 
-var bignum = require('bignum');
+// var bignum = require('bignum');
 
 describe('Number.Bcd', function () {
 
@@ -37,9 +38,6 @@ describe('Number.Bcd', function () {
 
     done();
   });
-
-
-
 
 
   it('should read with decimals', function (done) {
@@ -97,7 +95,7 @@ describe('Number.Bcd', function () {
         field: 'bcd', bytes: 18, decimals: 0, extent: 'fix'
     });
 
-    var result = f.write(cursor, 12345678);
+    f.write(cursor, 12345678);
     var expected = new Buffer([0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]);
     buf = buf.slice(0, cursor.tell());
 

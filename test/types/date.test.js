@@ -1,3 +1,4 @@
+/*eslint new-cap: 0 */
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
@@ -59,7 +60,7 @@ describe('DateType', function () {
 
 
   it('should read without format', function (done) {
-    var f = Schema.Types.Date('InvoiceDate', {type: 'Date', format:{fmt: ''}});
+    var f = Schema.Types.Date('InvoiceDate', {type: 'Date', format: {fmt: ''}});
     var cursor = cursorWithDate();
     var result = f.read(cursor);
     expect(result).to.be.instanceof(Date);
@@ -82,5 +83,4 @@ describe('DateType', function () {
     expect(result).to.equal(null);
     done();
   });
-
 });
