@@ -109,25 +109,6 @@ describe('Inbound', function () {
     }));
   });//--read as array
 
-  it('should import a qv11 store', {skip: true}, function (done) {
-    var inbound = new qvx.Inbound({recordFormat: 'object'});
-    var fileStream = fs.createReadStream(path.join(__dirname, 'fixtures', 'qlikview_11_store_single.qvx'));
-    var stringify = JSONStream.stringify(false);
-
-
-    fileStream.pipe(inbound)
-    .pipe(stringify)
-    .pipe(concat(function (body) {
-      expect(body).to.exist;
-      var expected = fs.readFileSync(
-        path.join(__dirname, 'fixtures', 'expressor_single_hash.json'), {encoding: 'utf8'}
-      );
-      expect(body).to.equal(expected);
-      fs.writeFileSync(path.join(__dirname, 'tmp', 'qlikview_11_store_single.json'), body);
-      done();
-    }));
-  });//--import qv11
-
   describe('inbound fixtures', function () {
     glob.sync(path.join(__dirname, 'fixtures/*.qvx')).forEach(testInbound);
   });

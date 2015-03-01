@@ -8,11 +8,15 @@ var it = lab.test;
 
 var fs = require('fs');
 var path = require('path');
+var glob = require('glob');
 var es = require('event-stream');
 var concat = require('concat-stream');
 
 var qvx = require('../');
 
+var Cursor = require('../lib/extended-cursor');
+var xml2js = require('xml2js');
+var parser = new xml2js.Parser({explicitArray: false});
 
 describe('Outbound', function () {
 
@@ -138,4 +142,65 @@ describe('Outbound', function () {
 
   });
 
+  describe('fixtures', {skip: true}, function () {
+    glob.sync(path.join(__dirname, 'fixtures/*.qvx')).forEach(testOutbound);
+  });
+
 });//--Writer
+
+
+function testOutbound(qvxFile) {
+  var basename = path.basename(qvxFile);
+  return it(basename , function (done) {
+    var schema;
+    var dirname = path.dirname(qvxFile);
+
+    var dataFile = qvxFile.replace('.qvx', '.qvx.json');
+    var schemaFile = qvxFile.replace('.qvx', '.schema.json');
+
+
+    if(!fs.existsSync(schemaFile)) {
+      //create it
+      var buf = fs.readFileSync(qvxFile);
+      var cursor = new Cursor(buf);
+      var xml = cursor.readZeroString();
+      parser.parseString(xml, function (err, obj) {
+        if (err) {
+          done(err);
+        }
+        schema = qvx.Schema.fromQvx(obj);
+        fs.writeFileSync(schemaFile, JSON.stringify(schema));
+        done(new Error('rerun test'));
+      });
+      return;
+    }
+
+    var schema = new qvx.Schema(require(schemaFile));
+
+    done();
+
+    // var outbound = new qvx.Inbound({recordFormat: 'object'});
+    // var fileIn = fs.createReadStream(qvxFile);
+    // var stream = fileIn.pipe(inbound)
+    // .pipe(es.map(function (data, cb) {
+    //   //console.log(data);
+    //   expect(data).to.be.an('object');
+    //   cb(null, data);
+    // }))
+    // .pipe(es.stringify());
+
+    // if (!fs.existsSync(dataFile)) {
+    //   var fileOut = fs.createWriteStream(dataFile);
+    //   stream = stream.pipe(fileOut);
+    //   fileOut.on('close', done);
+    // }
+    // else {
+    //   stream.pipe(concat(function (body) {
+    //     expect(body).to.equal(fs.readFileSync(dataFile, 'utf-8'));
+    //     done();
+    //   }));
+    // }
+
+
+  });//..it Inbound
+}//--testInbound
