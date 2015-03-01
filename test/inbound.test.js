@@ -128,25 +128,43 @@ describe('Inbound', function () {
     }));
   });//--import qv11
 
-  describe('private inbound', {only: true}, function () {
+  describe('inbound fixtures', function () {
+    glob.sync(path.join(__dirname, 'fixtures/*.qvx')).forEach(testInbound);
+  });
+
+  describe('private inbound', function () {
     glob.sync('./private/*.qvx').forEach(testInbound);
   });
 });
 
-function testInbound(filename) {
-  it('inbound ' + filename, function (done) {
+function testInbound(qvxFile) {
+  it('inbound ' + qvxFile, function (done) {
+    var dirname = path.dirname(qvxFile);
+    var basename = path.basename(qvxFile);
+    var dataFile = path.join(dirname, basename + '.json');
+
     var inbound = new qvx.Inbound({recordFormat: 'object'});
-    var fileIn = fs.createReadStream(filename);
-    var fileOut = fs.createWriteStream(path.join(__dirname, 'tmp', 'private.' + path.basename(filename) + '.json'));
-    fileIn.pipe(inbound)
+    var fileIn = fs.createReadStream(qvxFile);
+    var stream = fileIn.pipe(inbound)
     .pipe(es.map(function (data, cb) {
       //console.log(data);
       expect(data).to.be.an('object');
       cb(null, data);
     }))
-    .pipe(es.stringify())
-    .pipe(fileOut);
+    .pipe(es.stringify());
 
-    fileOut.on('close', done);
+    if (!fs.existsSync(dataFile)) {
+      var fileOut = fs.createWriteStream(dataFile);
+      stream = stream.pipe(fileOut);
+      fileOut.on('close', done);
+    }
+    else {
+      stream.pipe(concat(function (body) {
+        expect(body).to.equal(fs.readFileSync(dataFile, 'utf-8'));
+        done();
+      }));
+    }
+
+
   });//..it Inbound
 }//--testInbound
