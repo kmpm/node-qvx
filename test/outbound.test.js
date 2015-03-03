@@ -134,7 +134,7 @@ describe('Outbound', function () {
 
     var file = fs.createWriteStream(path.join(__dirname, 'tmp', 'streamed.qvx'));
 
-    fs.createReadStream(path.join(__dirname, 'fixtures', 'test_expressor_data_hash.json'))
+    fs.createReadStream(path.join(__dirname, 'fixtures', 'test_expressor.qvx.json'))
     .pipe(es.split())
     .pipe(es.parse())
     .pipe(outbound)
