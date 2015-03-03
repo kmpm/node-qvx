@@ -28,7 +28,7 @@ describe('Outbound', function () {
   });
 
 
-  it('should transform', function (done) {
+  it('should transform', {only: true}, function (done) {
     var fields = {
       'AddressNumber': {type: Number},
       'ItemNumber': {type: Number, field: 'signed', bytes: 8, decimals: 0},
@@ -51,10 +51,11 @@ describe('Outbound', function () {
       'ofDaystoShip': {type: Number, field: 'signed', decimals: 0}
     };
 
-    var schema = new qvx.Schema(fields, {
+    var schema = new qvx.Schema({
       createdAt: '2012-03-06 19:22:15',
       creator: false,
-      tableName: 'test'
+      tableName: 'test',
+      fields: fields
     });
 
     var data = {
@@ -121,7 +122,7 @@ describe('Outbound', function () {
       'ofDaystoShip': {type: Number, decimals: 0}
     };
 
-    var schema = new qvx.Schema({}, {
+    var schema = new qvx.Schema({
       createdAt: '2012-03-06 19:22:15',
       creator: false,
       tableName: 'test',
@@ -142,7 +143,7 @@ describe('Outbound', function () {
 
   });
 
-  describe('fixtures', {skip: true}, function () {
+  describe('fixtures', {only: true}, function () {
     glob.sync(path.join(__dirname, 'fixtures/*.qvx')).forEach(testOutbound);
   });
 
@@ -151,7 +152,8 @@ describe('Outbound', function () {
 
 function testOutbound(qvxFile) {
   var basename = path.basename(qvxFile);
-  return it(basename , function (done) {
+  it(basename , function (done) {
+    console.log('testing', qvxFile);
     var schema;
     var dirname = path.dirname(qvxFile);
 
@@ -166,40 +168,43 @@ function testOutbound(qvxFile) {
       var xml = cursor.readZeroString();
       parser.parseString(xml, function (err, obj) {
         if (err) {
-          done(err);
+          return done(err);
         }
         schema = qvx.Schema.fromQvx(obj);
         fs.writeFileSync(schemaFile, JSON.stringify(schema));
-        done(new Error('rerun test'));
+        return done(new Error('rerun test'));
       });
       return;
     }
+    console.log('schemafile exists');
+    var schemaSpec = require(schemaFile);
+    var schema = new qvx.Schema(schemaSpec);
+    expect(schema.tableName).to.equal(schemaSpec.tableName);
+    expect(schema.createdAt).to.equal(schemaSpec.createdAt);
 
-    var schema = new qvx.Schema(require(schemaFile));
+    expect(schema.fields).to.have.length(schemaSpec.fields.length);
+    expect(schema.fields[0]).to.have.property('name', schemaSpec.fields[0].name);
+    var outbound = new qvx.Outbound(schema, {recordFormat: 'object'});
 
-    done();
 
-    // var outbound = new qvx.Inbound({recordFormat: 'object'});
-    // var fileIn = fs.createReadStream(qvxFile);
-    // var stream = fileIn.pipe(inbound)
-    // .pipe(es.map(function (data, cb) {
-    //   //console.log(data);
-    //   expect(data).to.be.an('object');
-    //   cb(null, data);
-    // }))
-    // .pipe(es.stringify());
+    fs.createReadStream(dataFile)
+    .pipe(es.split())
+    .pipe(es.parse())
+    .pipe(outbound)
+    .pipe(concat(function (body) {
+      // console.log('asdf', body.length);
+      fs.writeFileSync(path.join(__dirname, 'tmp', basename), body);
+      var bufA = new Buffer(body);
+      var bufB = fs.readFileSync(qvxFile);
+      var size = 200;
+      for (var i = 0; i < bufA.length; i += size) {
+        expect(bufA.slice(i, i + size).toString('utf-8'), i).to.eql(bufB.slice(i, i + size).toString('utf-8'));
+      }
 
-    // if (!fs.existsSync(dataFile)) {
-    //   var fileOut = fs.createWriteStream(dataFile);
-    //   stream = stream.pipe(fileOut);
-    //   fileOut.on('close', done);
-    // }
-    // else {
-    //   stream.pipe(concat(function (body) {
-    //     expect(body).to.equal(fs.readFileSync(dataFile, 'utf-8'));
-    //     done();
-    //   }));
-    // }
+      done();
+    }));
+
+
 
 
   });//..it Inbound

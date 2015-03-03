@@ -12,6 +12,7 @@ var es = require('event-stream');
 
 var concat = require('concat-stream');
 var JSONStream = require('JSONStream');
+var assert = require('assert');
 
 var qvx = require('../');
 
@@ -89,41 +90,21 @@ describe('Inbound', function () {
   });//--read as array
 
 
-  lab.test('read currency', function (done) {
-
-    var inbound = new qvx.Inbound({recordFormat: 'object'});
-    var fileStream = fs.createReadStream(path.join(__dirname, 'fixtures', 'CurrencyExchangeRate.qvx'));
-    var stringify = JSONStream.stringify(false);
-
-
-    fileStream.pipe(inbound)
-    .pipe(stringify)
-    .pipe(concat(function (body) {
-      expect(body).to.exist;
-      // var obj = JSON.parse(body);
-      //console.log(body);
-      var expected = fs.readFileSync(path.join(__dirname, 'fixtures', 'CurrencyExchangeRate.json'), {encoding: 'utf8'});
-      expect(body).to.equal(expected);
-      fs.writeFileSync(path.join(__dirname, 'tmp', 'inbound.currency.log'), body);
-      done();
-    }));
-  });//--read as array
-
   describe('inbound fixtures', function () {
     glob.sync(path.join(__dirname, 'fixtures/*.qvx')).forEach(testInbound);
   });
 
-  describe('private inbound', function () {
-    glob.sync('./private/*.qvx').forEach(testInbound);
-  });
+  // describe('private inbound', function () {
+  //   glob.sync('./private/*.qvx').forEach(testInbound);
+  // });
 });
 
 function testInbound(qvxFile) {
-  it('inbound ' + qvxFile, function (done) {
+  var basename = path.basename(qvxFile);
+  it(basename, function (done) {
     var dirname = path.dirname(qvxFile);
-    var basename = path.basename(qvxFile);
     var dataFile = path.join(dirname, basename + '.json');
-
+    var schemaFile = qvxFile.replace('.qvx', '.schema.json');
     var inbound = new qvx.Inbound({recordFormat: 'object', timezone:'Europe/Stockholm'});
     expect(inbound).to.have.property('options')
     .to.have.property('timezone', 'Europe/Stockholm');
@@ -136,6 +117,17 @@ function testInbound(qvxFile) {
     }))
     .pipe(es.stringify());
 
+    inbound.on('schema', function (obj) {
+      if (fs.existsSync(schemaFile)) {
+        var expected = JSON.parse(fs.readFileSync(schemaFile, 'utf-8'));
+        obj = JSON.parse(JSON.stringify(obj));
+        assert.deepEqual(obj, expected);
+      }
+      else {
+        fs.writeFileSync(schemaFile, JSON.stringify(obj, null, 2));
+      }
+    });
+
     if (!fs.existsSync(dataFile)) {
       var fileOut = fs.createWriteStream(dataFile);
       stream = stream.pipe(fileOut);
@@ -143,7 +135,10 @@ function testInbound(qvxFile) {
     }
     else {
       stream.pipe(concat(function (body) {
-        expect(body).to.equal(fs.readFileSync(dataFile, 'utf-8'));
+        var expected = fs.readFileSync(dataFile, 'utf-8');
+        // console.log(body);
+        // console.log(expected);
+        expect(body).to.equal(expected);
         done();
       }));
     }

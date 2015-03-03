@@ -14,14 +14,14 @@ var Schema = qvx.Schema;
 describe('Schema', function () {
 
   it('should include creator', function (done) {
-    var schema = new Schema({}, {creator: true});
+    var schema = new Schema({creator: true});
     var spec = schema.toQvxSpec();
     expect(spec).to.have.property('Creator');
     done();
   });
 
   it('should throw on adding a field with bad type', function (done) {
-    var schema = new Schema({}, {creator: true});
+    var schema = new Schema({creator: true});
     schema.toQvxSpec();
 
     expect(fn).to.throw(TypeError, 'Undefined type `Monkey` at `Testing`');
@@ -32,7 +32,7 @@ describe('Schema', function () {
   });
 
   it('should add with native type', function (done) {
-    var schema = new Schema({}, {creator: true});
+    var schema = new Schema({creator: true});
     schema.toQvxSpec();
     schema.add({Testing: {type: String}});
     expect(schema.fields).to.have.length(1);
@@ -40,7 +40,7 @@ describe('Schema', function () {
   });
 
   it('should add with direct type', function (done) {
-    var schema = new Schema({}, {creator: true});
+    var schema = new Schema({creator: true});
     schema.toQvxSpec();
     schema.add({Testing: String});
     expect(schema.fields).to.have.length(1);
@@ -86,10 +86,11 @@ describe('Schema', function () {
         'ItemNumber': {type: Number, field: 'signed', bytes: 8, decimals: 0}
       };
 
-      var schema = new qvx.Schema(fields, {
+      var schema = new qvx.Schema({
         createdAt: '2012-03-06 19:22:15',
         creator: false,
-        tableName: 'test'
+        tableName: 'test',
+        fields: fields
       });
 
       var x = schema.toQvx();
@@ -104,9 +105,10 @@ describe('Schema', function () {
         'ItemNumber': {type: Number, field: 'signed', bytes: 8, decimals: 0}
       };
 
-      var schema = new qvx.Schema(fields, {
+      var schema = new qvx.Schema({
         createdAt: '2012-03-06 19:22:15',
-        creator: false
+        creator: false,
+        fields: fields
       });
 
       var x = schema.toQvx({pretty: true});
@@ -118,7 +120,7 @@ describe('Schema', function () {
 
   describe('fromQvx', function () {
 
-    it('should suppor test_expressor', function (done) {
+    it('should support test_expressor', function (done) {
       var e = require('./fixtures/test_expressor_header.json');
       var schema = Schema.fromQvx(e);
 
@@ -162,7 +164,7 @@ describe('Schema', function () {
       })
       .to.have.property('format')
       .to.include({
-        fmt: 'YYYY-MM-DD HH:mm:ss',
+        fmt: 'YYYY-MM-DD HH:mm:ss.SSS',
         type: 'TIMESTAMP'
       });
 

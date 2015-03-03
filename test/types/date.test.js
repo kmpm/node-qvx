@@ -42,7 +42,7 @@ describe('DateType', function () {
     .to.have.property('format')
     .to.include({
       type: 'TIMESTAMP',
-      fmt: 'YYYY-MM-DD HH:mm:ss'
+      fmt: 'YYYY-MM-DD HH:mm:ss.SSS'
     })
     .to.not.have.keys('nDec', 'Dec', 'Thou', 'UseThou');
     // console.log(schema.fields.InvoiceDate);
@@ -76,11 +76,11 @@ describe('DateType', function () {
     done();
   });
 
-  it('should read short string as null', function (done) {
-    var f = Schema.Types.Date('InvoiceDate');
+  it('should read short string', function (done) {
+    var f = Schema.Types.Date('InvoiceDate', {timezone: 'Europe/London'});
     var cursor = cursorWithDate('2015');
     var result = f.read(cursor);
-    expect(result).to.equal(null);
+    expect(result.toISOString()).to.equal('2015-01-01T00:00:00.000Z');
     done();
   });
 
