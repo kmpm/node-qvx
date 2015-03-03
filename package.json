@@ -31,6 +31,7 @@
     "buffercursor": "0.0.12",
     "debug": "^2.1.1",
     "moment": "^2.9.0",
+    "moment-timezone": "^0.3.0",
     "xml2js": "^0.4.5",
     "xmlbuilder": "^2.5.2"
   }

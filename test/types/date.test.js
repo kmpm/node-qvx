@@ -83,4 +83,14 @@ describe('DateType', function () {
     expect(result).to.equal(null);
     done();
   });
+
+  it('should read with timezone', function (done) {
+    var f = Schema.Types.Date('InvoiceDate', {type: 'Date', timezone: 'Asia/Jakarta'});
+    var cursor = cursorWithDate();
+    var result = f.read(cursor);
+    expect(result).to.be.instanceof(Date);
+    expect(result.toISOString()).to.not.equal('2010-12-12T10:12:13.000Z');
+    expect(result.toISOString()).to.equal('2010-12-12T04:12:13.000Z');
+    done();
+  })
 });

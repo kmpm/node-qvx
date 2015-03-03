@@ -124,7 +124,9 @@ function testInbound(qvxFile) {
     var basename = path.basename(qvxFile);
     var dataFile = path.join(dirname, basename + '.json');
 
-    var inbound = new qvx.Inbound({recordFormat: 'object'});
+    var inbound = new qvx.Inbound({recordFormat: 'object', timezone:'Europe/Stockholm'});
+    expect(inbound).to.have.property('options')
+    .to.have.property('timezone', 'Europe/Stockholm');
     var fileIn = fs.createReadStream(qvxFile);
     var stream = fileIn.pipe(inbound)
     .pipe(es.map(function (data, cb) {
