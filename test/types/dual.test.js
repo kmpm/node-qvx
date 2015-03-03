@@ -221,17 +221,21 @@ describe('DualType', function () {
     done();
   });
 
-  it('should throw on INT', function (done) {
+  it('should write INT ad double', function (done) {
     var f = new Schema.Types.Dual('DualTest', {
       field: 'dual', extent: 'special'
     });
 
     var buf = new Buffer(30);
     var cursor = new Cursor(buf);
-    expect(fn).to.throw(Error, 'No int yet');
-    function fn() {
-      f.write(cursor, 10);
-    }
+    f.write(cursor, 10);
+    buf = cursor.buffer.slice(0, cursor.tell());
+    var expected = new Buffer([0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x24, 0x40]);
+    expect(buf).to.eql(expected);
+    // expect(fn).to.throw(Error, 'No int yet');
+    // function fn() {
+    //   f.write(cursor, 10);
+    // }
     done();
   });
 

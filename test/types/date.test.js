@@ -92,5 +92,18 @@ describe('DateType', function () {
     expect(result.toISOString()).to.not.equal('2010-12-12T10:12:13.000Z');
     expect(result.toISOString()).to.equal('2010-12-12T04:12:13.000Z');
     done();
-  })
+  });
+
+  it('should write without .SSS', function (done) {
+    var f = Schema.Types.Date('InvoiceDate', {type: 'Date'});
+    var d = new Date(2015, 2, 3, 21, 0);
+    var buf = new Buffer(50);
+    var cursor = new Cursor(buf);
+    f.write(cursor, d);
+    var result = buf.toString('utf-8', 1, cursor.tell() );
+    expect(cursor.tell(), result).to.equal(20);
+    expect(result).to.equal('2015-03-03 21:00:00');
+
+    done();
+  });
 });

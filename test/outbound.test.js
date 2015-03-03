@@ -13,6 +13,7 @@ var es = require('event-stream');
 var concat = require('concat-stream');
 
 var qvx = require('../');
+var helpers = require('./helpers');
 
 var Cursor = require('../lib/extended-cursor');
 var xml2js = require('xml2js');
@@ -147,19 +148,21 @@ describe('Outbound', function () {
     glob.sync(path.join(__dirname, 'fixtures/*.qvx')).forEach(testOutbound);
   });
 
+  describe('private', function () {
+    glob.sync('./private/*.qvx').forEach(testOutbound);
+  });
+
 });//--Writer
 
 
 function testOutbound(qvxFile) {
   var basename = path.basename(qvxFile);
-  it(basename , function (done) {
-    console.log('testing', qvxFile);
+  it(basename, function (done) {
+    // console.log('testing', qvxFile);
     var schema;
-    var dirname = path.dirname(qvxFile);
 
     var dataFile = qvxFile.replace('.qvx', '.qvx.json');
     var schemaFile = qvxFile.replace('.qvx', '.schema.json');
-
 
     if(!fs.existsSync(schemaFile)) {
       //create it
@@ -176,9 +179,9 @@ function testOutbound(qvxFile) {
       });
       return;
     }
-    console.log('schemafile exists');
+    // console.log('schemafile exists');
     var schemaSpec = require(schemaFile);
-    var schema = new qvx.Schema(schemaSpec);
+    schema = new qvx.Schema(schemaSpec);
     expect(schema.tableName).to.equal(schemaSpec.tableName);
     expect(schema.createdAt).to.equal(schemaSpec.createdAt);
 
@@ -192,20 +195,13 @@ function testOutbound(qvxFile) {
     .pipe(es.parse())
     .pipe(outbound)
     .pipe(concat(function (body) {
-      // console.log('asdf', body.length);
-      fs.writeFileSync(path.join(__dirname, 'tmp', basename), body);
-      var bufA = new Buffer(body);
-      var bufB = fs.readFileSync(qvxFile);
-      var size = 200;
-      for (var i = 0; i < bufA.length; i += size) {
-        expect(bufA.slice(i, i + size).toString('utf-8'), i).to.eql(bufB.slice(i, i + size).toString('utf-8'));
-      }
+      var actual = helpers.splitQvx(body);
+      var expected = helpers.splitQvx(fs.readFileSync(qvxFile));
 
-      done();
+      helpers.equalBuffer(expected, actual);
+      helpers.equalXmlHeader(expected.xml, actual.xml, function (err) {
+        done(err);
+      });
     }));
-
-
-
-
   });//..it Inbound
 }//--testInbound

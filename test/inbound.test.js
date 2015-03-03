@@ -94,9 +94,9 @@ describe('Inbound', function () {
     glob.sync(path.join(__dirname, 'fixtures/*.qvx')).forEach(testInbound);
   });
 
-  // describe('private inbound', function () {
-  //   glob.sync('./private/*.qvx').forEach(testInbound);
-  // });
+  describe('private inbound', function () {
+    glob.sync('./private/*.qvx').forEach(testInbound);
+  });
 });
 
 function testInbound(qvxFile) {
@@ -105,7 +105,7 @@ function testInbound(qvxFile) {
     var dirname = path.dirname(qvxFile);
     var dataFile = path.join(dirname, basename + '.json');
     var schemaFile = qvxFile.replace('.qvx', '.schema.json');
-    var inbound = new qvx.Inbound({recordFormat: 'object', timezone:'Europe/Stockholm'});
+    var inbound = new qvx.Inbound({recordFormat: 'object', timezone: 'Europe/Stockholm'});
     expect(inbound).to.have.property('options')
     .to.have.property('timezone', 'Europe/Stockholm');
     var fileIn = fs.createReadStream(qvxFile);
