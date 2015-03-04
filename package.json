@@ -1,6 +1,6 @@
 {
   "name": "qvx",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Read and Write Qlik QVX data using Streams",
   "keywords": [
     "qlikview",
