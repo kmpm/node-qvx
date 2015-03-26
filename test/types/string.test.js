@@ -206,4 +206,32 @@ describe('StringType', function () {
     done();
   });
 
+
+  it('should write oumlats in utf8', function (done) {
+    var expected = new Buffer([0x05, 0x50, 0xc3, 0x85, 0x53, 0x45]);
+    var f = new Schema.Types.String('StringTest', {bytes: 1});
+
+    var buf = new Buffer(30);
+    var cursor = new Cursor(buf);
+    f.write(cursor, 'PÅSE');
+
+    expect(cursor.tell(), 'bad length written').to.equal(expected.length);
+
+    buf = cursor.buffer.slice(0, cursor.tell());
+    expect(buf).to.eql(expected);
+
+    done();
+  });
+
+
+  it('should read oumlats in utf8', function (done) {
+    var expected = 'PÅSE';
+    var buf = new Buffer([0x05, 0x50, 0xc3, 0x85, 0x53, 0x45, 0x99, 0x99, 0x99]);
+    var f = new Schema.Types.String('StringTest', {bytes: 1});
+    var cursor = new Cursor(buf);
+    var actual = f.read(cursor);
+    expect(actual).to.eql(expected);
+    done();
+  });
+
 });
