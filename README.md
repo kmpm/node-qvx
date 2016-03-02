@@ -2,7 +2,6 @@ node-qvx
 =========
 Read and Write Qlik QVX data using Streams
 
-___ALPHA___
 ## Status
 [![Build Status](https://travis-ci.org/kmpm/node-qvx.svg?branch=master)](https://travis-ci.org/kmpm/node-qvx)
 
@@ -18,6 +17,8 @@ Installation
 
 There is a dependency on a module called bignum that uses some native SSL libraries
 for handling 64 bit integers. This dependency might be tricky to install in windows.
+Go to https://slproweb.com/products/Win32OpenSSL.html and download the latest __full__
+version of OpenSLL and install it to it's default location.
 
 Examples
 ---------

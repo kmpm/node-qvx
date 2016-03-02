@@ -29,7 +29,7 @@ describe('Outbound', function () {
   });
 
 
-  it('should transform', {only: true}, function (done) {
+  it('should transform', function (done) {
     var fields = {
       'AddressNumber': {type: Number},
       'ItemNumber': {type: Number, field: 'signed', bytes: 8, decimals: 0},
@@ -144,7 +144,7 @@ describe('Outbound', function () {
 
   });
 
-  describe('fixtures', {only: true}, function () {
+  describe('fixtures', function () {
     glob.sync(path.join(__dirname, 'fixtures/*.qvx')).forEach(testOutbound);
   });
 
