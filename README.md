@@ -5,8 +5,7 @@ Read and Write Qlik QVX data using Streams
 ## Status
 [![Build Status](https://travis-ci.org/kmpm/node-qvx.svg?branch=master)](https://travis-ci.org/kmpm/node-qvx)
 
-Documentation needs to be done but it's still in a quite unstable time
-so please have a look at the tests.
+Documentation needs to so please have a look at the tests.
 
 Have a look at https://github.com/kmpm/node-qvxserver for a Hapi based webserver that will give you qvx data.
 
@@ -18,7 +17,7 @@ Installation
 There is a dependency on a module called bignum that uses some native SSL libraries
 for handling 64 bit integers. This dependency might be tricky to install in windows.
 Go to https://slproweb.com/products/Win32OpenSSL.html and download the latest __full__
-version of OpenSLL and install it to it's default location.
+version of OpenSLL and install it to it's default location. That might help.
 
 Examples
 ---------
