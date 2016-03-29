@@ -36,7 +36,6 @@
     "debug": "^2.1.1",
     "moment": "^2.9.0",
     "moment-timezone": "^0.5.1",
-    "xml2js": "^0.4.5",
-    "xmlbuilder": "^4.2.1"
+    "xml2js": "^0.4.5"
   }
 }
