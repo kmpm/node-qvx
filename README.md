@@ -22,7 +22,24 @@ version of OpenSLL and install it to it's default location.
 
 Examples
 ---------
-This is sort of a pointless thing to do but it shows a use of Inbound.
+### Outbound
+Have a look at https://github.com/kmpm/node-qvxserver for a 
+Hapi based webserver that will give you qvx data that for example
+QlikView can read. Also look at tests/outbound.tests.js and test/schema.tests.js.
+
+Since the process is quit simple but quite verbos it's not suitable for the readme 
+but you basically do.
+
+1. Create a field definition with datatypes
+2. Create a resuable schema instance using these field definitions 
+3. From a stream of objects that match the field definition, pipe through
+   the schema instance.
+
+
+### Inbound
+This shows a use of Inbound, something that you would do if you needed
+to read qvx data from somewhere. It's used internally for testing and 
+validation.
 
 ```javascript
 
