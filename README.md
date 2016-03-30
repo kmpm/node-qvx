@@ -9,6 +9,8 @@ Documentation needs to so please have a look at the tests.
 
 Have a look at https://github.com/kmpm/node-qvxserver for a Hapi based webserver that will give you qvx data.
 
+There is a live demo of this library at https://qvx-demo.herokuapp.com that pulls information from http://www.scb.se/api and converts to qvx.
+
 Installation
 ------------
 
